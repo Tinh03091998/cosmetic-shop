@@ -18,10 +18,10 @@ class CreateCommentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('pro_id')->unsigned();
             $table->longText('content');
-            $table->timestamp('created_at')->default()->nullable();
-            $table->timestamp('updated_at')->default()->nullable();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('pro_id')->references('id')->on('products');
+//            $table->timestamp('created_at');
+//            $table->timestamp('updated_at');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+//            $table->foreign('pro_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

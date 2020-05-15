@@ -17,8 +17,8 @@ class CreateInvoicesTable extends Migration
             $table->increments('invoice_id');
             $table->integer('customer_id')->unsigned();
             $table->longText('notes')->nullable();
-            $table->timestamp('created_at')->default()->nullable();
-            $table->foreign('customer_id')->references('id')->on('customers');
+//            $table->timestamp('created_at')->default()->nullable();
+//            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
         });
     }

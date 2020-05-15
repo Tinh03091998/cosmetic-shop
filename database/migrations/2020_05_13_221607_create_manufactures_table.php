@@ -16,8 +16,8 @@ class CreateManufacturesTable extends Migration
         Schema::create('manufactures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255);
-            $table->timestamp('created_at')->default()->nullable();
-            $table->timestamp('updated_at')->default()->nullable();
+//            $table->timestamp('created_at')->default()->nullable();
+//            $table->timestamp('updated_at')->default()->nullable();
             $table->timestamps();
         });
     }

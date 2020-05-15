@@ -23,9 +23,10 @@ class CreateProductsTable extends Migration
             $table->integer('view');
             $table->longText('description');
             $table->integer('manufacture_id')->unsigned();
-            $table->foreign('manufacture_id')->references('id')->on('manufactures');
-            $table->timestamp('created_at')->default()->nullable();
-            $table->timestamp('updated_at')->default()->nullable();
+            $table->foreign('manufacture_id')->references('id')->on('manufactures')->onDelete('cascade');
+            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
+//            $table->timestamp('created_at')->default()->nullable();
+//            $table->timestamp('updated_at')->default()->nullable();
             $table->timestamps();
         });
     }

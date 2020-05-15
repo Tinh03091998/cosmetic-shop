@@ -18,8 +18,8 @@ class CreateInvoiceDetailsTable extends Migration
             $table->integer('pro_id')->unsigned();
             $table->integer('amount')->unsigned();
             $table->integer('discount_id')->unsigned()->nullable();
-            $table->foreign('pro_id')->references('id')->on('products');
-            $table->foreign('invoice_id')->references('invoice_id')->on('invoices');
+//            $table->foreign('pro_id')->references('id')->on('products')->onDelete('cascade');
+//            $table->foreign('invoice_id')->references('invoice_id')->on('invoices')->onDelete('cascade');
             $table->timestamps();
         });
     }

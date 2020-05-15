@@ -41,7 +41,7 @@
                         @foreach($new_products as $new_product)
                             <div class="col-sm-3">
                                 <div class="single-item">
-                                    @if($new_product->pro_price!=0)
+                                    @if($new_product->promoted_price!=0)
                                     <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
                                     @endif
                                     <div class="single-item-header">
@@ -50,17 +50,17 @@
                                     <div class="single-item-body">
                                         <p class="single-item-title">{{$new_product->name}}</p>
                                         <p class="single-item-price">
-                                        @if($new_product->pro_price==0)
+                                        @if($new_product->promoted_price==0)
                                             <span class="flash-sale">{{number_format($new_product->selling_price)}} VND</span>
                                         @else
                                              <span class="flash-del">{{number_format($new_product->selling_price)}} VND</span>
-                                             <span class="flash-sale">{{number_format($new_product->pro_price)}} VND</span>
+                                             <span class="flash-sale">{{number_format($new_product->promoted_price)}} VND</span>
                                         @endif
                                         </p>
                                     </div>
                                     <div class="single-item-caption">
                                         <a class="add-to-cart pull-left" href="{{route('add-to-cart', $new_product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">{{$new_product->introduction}} <i class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="product.html">{{$new_product->description}} <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>
@@ -89,12 +89,12 @@
                                         <p class="single-item-title">{{$promoted_product->name}}</p>
                                         <p class="single-item-price">
                                             <span class="flash-del">{{number_format($promoted_product->selling_price)}} VND</span>
-                                            <span class="flash-sale">{{number_format($promoted_product->pro_price)}} VND</span>
+                                            <span class="flash-sale">{{number_format($promoted_product->promoted_price)}} VND</span>
                                         </p>
                                     </div>
                                     <div class="single-item-caption">
                                         <a class="add-to-cart pull-left" href="{{route('add-to-cart', $promoted_product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" href="product.html">{{$promoted_product->introduction}} <i class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary" href="product.html">{{$promoted_product->description}} <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>

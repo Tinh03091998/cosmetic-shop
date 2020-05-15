@@ -14,12 +14,12 @@ class CreateGalleryTable extends Migration
     public function up()
     {
         Schema::create('gallery', function (Blueprint $table) {
-            $table->icrements('id');
+            $table->increments('id');
             $table->integer('pro_id')->unsigned();
             $table->string('product_image', 255);
-            $table->timestamp('created_at')->default()->nullable();
-            $table->timestamp('updated_at')->default()->nullable();
-            $table->foreign('pro_id')->references('id')->on('products');
+//            $table->timestamp('created_at')->default()->nullable();
+//            $table->timestamp('updated_at')->default()->nullable();
+//            $table->foreign('pro_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }

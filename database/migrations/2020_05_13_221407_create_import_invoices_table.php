@@ -20,10 +20,10 @@ class CreateImportInvoicesTable extends Migration
             $table->decimal('import_price', 15, 2)->unsigned();
             $table->integer('quatity')->unsigned();
             $table->decimal('total', 15, 2)->unsigned();
-            $table->foreign('user_id')->references('id')->on('user');
-            $table->foreign('pro_id')->references('id')->on('products');
-            $table->timestamp('created_at')->default()->nullable();
-            $table->timestamp('updated_at')->default()->nullable();
+//            $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
+//            $table->foreign('pro_id')->references('id')->on('products')->onDelete('cascade');
+//            $table->timestamp('created_at')->default()->nullable();
+//            $table->timestamp('updated_at')->default()->nullable();
             $table->timestamps();
         });
     }

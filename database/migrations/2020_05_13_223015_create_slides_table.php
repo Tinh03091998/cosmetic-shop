@@ -19,8 +19,8 @@ class CreateSlidesTable extends Migration
             $table->string('image', 255);
             $table->longText('description')->nullable();
             $table->string('link', 255)->nullable();
-            $table->timestamp('created_at')->default()->nullable();
-            $table->timestamp('updated_at')->default()->nullable();
+//            $table->timestamp('created_at')->default()->nullable();
+//            $table->timestamp('updated_at')->default()->nullable();
             $table->timestamps();
         });
     }

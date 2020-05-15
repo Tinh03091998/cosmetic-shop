@@ -21,7 +21,7 @@ class CreateMenusTable extends Migration
             $table->string('url', 100)->nullable();
             $table->integer('position')->nullable();
             $table->tinyInteger('display')->nullable();
-            $table->foreign('cat_id')->references('id')->on('categories');
+//            $table->foreign('cat_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }

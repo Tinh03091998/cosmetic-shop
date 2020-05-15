@@ -25,7 +25,7 @@ class HomepageController extends Controller
         $slide = Slides::all();
         $new_products = Products::where('view', 1)->paginate(5);
 //        $new_products = Products::paginate(1);
-        $promoted_product = Products::where('pro_price', '<>', 0)->get();
+        $promoted_product = Products::where('promoted_price', '<>', 0)->get();
         return view('web/home_page/index', compact('slide', 'new_products', 'promoted_product'));
     }
 

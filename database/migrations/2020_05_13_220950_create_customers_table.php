@@ -20,8 +20,8 @@ class CreateCustomersTable extends Migration
             $table->string('name', 255);
             $table->integer('phone')->unsigned();
             $table->longText('address');
-            $table->timestamp('created_at')->default()->nullable();
-            $table->timestamp('updated_at')->default()->nullable();
+//            $table->timestamp('created_at')->default()->nullable();
+//            $table->timestamp('updated_at')->default()->nullable();
             $table->timestamps();
         });
     }

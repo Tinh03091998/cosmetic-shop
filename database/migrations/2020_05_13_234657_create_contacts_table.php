@@ -18,7 +18,7 @@ class CreateContactsTable extends Migration
             $table->integer('customer_id')->unsigned();
             $table->longText('content');
             $table->tinyInteger('status');
-            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
         });
     }
