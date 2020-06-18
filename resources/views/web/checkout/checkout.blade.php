@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đặt hàng</title>
+    <title>Order</title>
     <link href='http://fonts.googleapis.com/css?family=Dosis:300,400' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
@@ -126,11 +126,11 @@
 <div class="inner-header">
     <div class="container">
         <div class="pull-left">
-            <h6 class="inner-title">Đặt hàng</h6>
+            <h6 class="inner-title">Order</h6>
         </div>
         <div class="pull-right">
             <div class="beta-breadcrumb">
-                <a href="index.html">Trang chủ</a> / <span>Đặt hàng</span>
+                <a href="{{route('page-index')}}">Home page</a> / <span>Order</span>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -143,39 +143,39 @@
         <form action="{{route('order')}}" method="post" class="beta-form-checkout">
             <div class="row">
                 <div class="col-sm-6">
-                    <h4>Đặt hàng</h4>
+                    <h4>Order</h4>
                     <div class="space20">&nbsp;</div>
 
                     <div class="form-block">
-                        <label for="name">Họ tên*</label>
-                        <input type="text" id="name" placeholder="Họ tên" required>
+                        <label for="name">Full name*</label>
+                        <input type="text" name="name" placeholder="Họ tên" required>
                     </div>
                     <div class="form-block">
-                        <label>Giới tính </label>
-                        <input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Nam</span>
-                        <input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Nữ</span>
+                        <label>Gender </label>
+                        <input id="gender" type="radio" class="input-radio" name="gender" value="nam" checked="checked" style="width: 10%"><span style="margin-right: 10%">Male</span>
+                        <input id="gender" type="radio" class="input-radio" name="gender" value="nữ" style="width: 10%"><span>Female</span>
 
                     </div>
 
                     <div class="form-block">
                         <label for="email">Email*</label>
-                        <input type="email" id="email" required placeholder="expample@gmail.com">
+                        <input type="email" name="email" required placeholder="expample@gmail.com">
                     </div>
 
                     <div class="form-block">
-                        <label for="adress">Địa chỉ*</label>
-                        <input type="text" id="adress" placeholder="Street Address" required>
+                        <label for="address">Address*</label>
+                        <input type="text" name="address" placeholder="Street Address" required>
                     </div>
 
 
                     <div class="form-block">
-                        <label for="phone">Điện thoại*</label>
-                        <input type="text" id="phone" required>
+                        <label for="phone">Phone*</label>
+                        <input type="text" name="phone" required>
                     </div>
 
                     <div class="form-block">
-                        <label for="notes">Ghi chú</label>
-                        <textarea id="notes"></textarea>
+                        <label for="notes">Notes</label>
+                        <textarea name="notes"></textarea>
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -209,15 +209,17 @@
                         <div class="your-order-body">
                             <ul class="payment_methods methods">
                                 <li class="payment_method_bacs">
-                                    <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="COD" checked="checked" data-order_button_text="">
-                                    <label for="payment_method_bacs">Thanh toán khi nhận hàng </label>
+                                    <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="COD" checked="checked" data-order_button_text=""
+                                    name="payment_method">
+                                    <label for="payment_method_bacs">Payment when I receive products </label>
                                     <div class="payment_box payment_method_bacs" style="display: block;">
                                         Cửa hàng sẽ gửi hàng đến địa chỉ của bạn, bạn xem hàng rồi thanh toán tiền cho nhân viên giao hàng
                                     </div>
                                 </li>
 
                                 <li class="payment_method_cheque">
-                                    <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="ATM" data-order_button_text="">
+                                    <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="ATM" data-order_button_text=""
+                                    name="payment_method">
                                     <label for="payment_method_cheque">Chuyển khoản </label>
                                     <div class="payment_box payment_method_cheque" style="display: none;">
                                         Chuyển tiền đến tài khoản sau:

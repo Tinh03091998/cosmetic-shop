@@ -4,7 +4,7 @@
         <div class="container">
             <div class="pull-left auto-width-left">
                 <ul class="top-menu menu-beta l-inline">
-                    <li><a href=""><i class="fa fa-home"></i> 90-92 Lê Thị Riêng, Bến Thành, Quận 1</a></li>
+                    <li><a href=""><i class="fa fa-home"></i> 154 Dinh Thon Street, Nam Tu Liem distrist, Ha Noi</a></li>
                     <li><a href=""><i class="fa fa-phone"></i> 0163 296 7751</a></li>
                 </ul>
             </div>
@@ -84,7 +84,7 @@
             <nav class="main-menu">
                 <ul class="l-inline ov">
                     <li><a href="{{route('page-index')}}">Home</a></li>
-                    <li><a href="#">Categories</a>
+                    <li><a href="{{route('product-type', 1)}}">Categories</a>
                         <ul class="sub-menu">
                         @foreach($category as $category)
                             <li><a href="{{route('product-type', $category->id)}}">{{$category->name}}</a></li>
@@ -92,7 +92,7 @@
                         </ul>
                     </li>
                     <li><a href="{{route('about')}}">About</a></li>
-                    <li><a href="{{route('contact')}}">Contact</a></li>
+                    <li><a href="{{route('contact')}}">Contact Us</a></li>
                 </ul>
                 <div class="clearfix"></div>
             </nav>

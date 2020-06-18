@@ -46,14 +46,7 @@
 
                         <p>Quantity:</p>
                         <div class="single-item-options">
-                            <select class="wc-select" name="color">
-                                <option>Quantity</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
+                            <input type="number" value="1" min="1" max="1000">
                             <a class="add-to-cart" href="{{route('add-to-cart', $products->id)}}"><i class="fa fa-shopping-cart"></i></a>
                             <div class="clearfix"></div>
                         </div>

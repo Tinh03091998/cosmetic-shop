@@ -2,37 +2,37 @@
 
 @section('content')
     <div class="content-wrapper">
-{{--        @if(count($errors) > 0)--}}
-{{--            <div class='card card-inverse-warning' id='context-menu-access'>--}}
-{{--                <div class='card-body'>--}}
-{{--                    @foreach($errors->all() as $err)--}}
-{{--                        <p class='card-text' style='text-align: center;'>--}}
-{{--                            {{$err}}--}}
-{{--                        </p>--}}
-{{--                    @endforeach--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endif--}}
+        @if(count($errors) > 0)
+            <div class='card card-inverse-warning' id='context-menu-access'>
+                <div class='card-body'>
+                    @foreach($errors->all() as $err)
+                        <p class='card-text' style='text-align: center;'>
+                            {{$err}}
+                        </p>
+                    @endforeach
+                </div>
+            </div>
+        @endif
 
-{{--        @if(session('ThongBao'))--}}
-{{--            <div class='card card-inverse-success' id='context-menu-access'>--}}
-{{--                <div class='card-body'>--}}
-{{--                    <p class='card-text' style='text-align: center;'>--}}
-{{--                        {{session('ThongBao')}}--}}
-{{--                    </p>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        @endif--}}
+        @if(session('Notify'))
+            <div class='card card-inverse-success' id='context-menu-access'>
+                <div class='card-body'>
+                    <p class='card-text' style='text-align: center;'>
+                        {{session('Notify')}}
+                    </p>
+                </div>
+            </div>
+        @endif
 
         <div class="row grid-margin">
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title" style="text-align: center;font-size: 30px;">Add Menu</h4>
-                        <form class="forms-sample" method="post" action="admin/menu/them">
+                        <form class="forms-sample" method="post" action="admin/menus/add">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
-                                <label for="exampleInputName1">Menu Name <span style="color: red">*</span></label>
+                                <label for="exampleInputName1">Menu name <span style="color: red">*</span></label>
                                 <input type="text" value=""
                                        name="name" class="form-control" id="exampleInputName1" placeholder="Tên danh mục" />
                             </div>
@@ -40,8 +40,8 @@
                                 <label for="exampleInputPassword4">Choose parent menu <span style="color: red">*</span></label>
                                 <select name="parent_id" aria-controls="order-listing" class="form-control">
                                     <option value="">--</option>
-                                    @foreach($menu as $m)
-                                        <option value="{{$m->id}}">{{$m->name}}</option>
+                                    @foreach($menus as $menu)
+                                        <option value="{{$menu->id}}">{{$menu->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

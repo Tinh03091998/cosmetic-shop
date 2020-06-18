@@ -97,6 +97,16 @@ Route::get('search', [
     'as'=>'search',
     'uses'=>'HomepageController@getSearch'
 ]);
+
+//checkout
+Route::get('checkout', [
+    'as'=>'order',
+    'uses'=>'HomepageController@getCheckout'
+]);
+Route::post('checkout', [
+    'as'=>'order',
+    'uses'=>'HomepageController@postCheckout'
+]);
 // admin
 //
 Route::group(['prefix'=>'admin'], function (){
@@ -118,6 +128,23 @@ Route::group(['prefix'=>'admin'], function (){
        Route::get('edit/{id}', 'CategoryController@getEditCategory');
        Route::post('edit/{id}', 'CategoryController@postEditCategory');
    });
+
+   //Manage Menu
+    Route::group(['prefix'=>'menus'], function (){
+        //add menu
+        Route::get('add', 'MenuController@getAddMenu');
+        Route::post('add', 'MenuController@postAddMenu');
+
+        //view menu
+        Route::get('view', 'MenuController@getViewMenu');
+
+        //delete menu
+        Route::get('delete/{id}', 'MenuController@getDeleteMenu');
+
+        //edit menu
+        Route::get('edit/{id}', 'MenuController@getEditMenu');
+        Route::post('edit/{id}', 'MenuController@postEditMenu');
+    });
 });
 //model
     Route::get('model/save', function(){

@@ -4,16 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Categories;
+use App\Customers;
+use App\Invoice_details;
+use App\Invoices;
 use App\Products;
 use App\Slides;
 use App\User;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Session;
 
 class HomepageController extends Controller
 {
+    use AuthenticatesUsers;
     //
     public function getHomepage(){
 
@@ -22,11 +28,11 @@ class HomepageController extends Controller
 
     //index
     public function getIndex(){
-        $slide = Slides::all();
+        $slides = Slides::all();
         $new_products = Products::where('view', 1)->paginate(5);
 //        $new_products = Products::paginate(1);
         $promoted_product = Products::where('promoted_price', '<>', 0)->get();
-        return view('web/home_page/index', compact('slide', 'new_products', 'promoted_product'));
+        return view('web/home_page/index', compact('slides', 'new_products', 'promoted_product'));
     }
 
     //product type
@@ -79,13 +85,34 @@ class HomepageController extends Controller
         return redirect()->back();
     }
 
-    //order
+    //order-checkout
     public function getCheckout(){
         return view('web.checkout.checkout');
     }
 
     public function postCheckout(Request $request){
-        $customer = new Customer();
+        $cart = Session::get('cart');
+//        dd($cart);
+        $customer = new Customers();
+        $customer->name = $request->name;
+        $customer->gender = $request->gender;
+        $customer->email = $request->email;
+        $customer->address = $request->address;
+        $customer->phone = $request->phone;
+        $customer->notes = $request->notes;
+        $customer->save();
+
+        $invoices = new Invoices();
+        $invoices->customer_id = $customer->id;
+        $invoices->order_date = date('Y-m-d');
+        $invoices->total = $cart->totalPrice;
+        $invoices->payment_method = $request->payment_method;
+        $invoices->notes = $request->notes;
+        $invoices->save();
+
+        $invoice_details = new Invoice_details();
+        $invoice_details->invoice_id = $invoices->invoice_id;
+
     }
 
     //login
@@ -100,7 +127,7 @@ class HomepageController extends Controller
     public function postSignup(Request $request){
         $this->validate($request,
             [
-                'email'=>'required|email|unique:users, email',
+                'email'=>'required|email|unique:customers,email',
                 'password'=>'required|min:6|max:15',
                 'name'=>'required',
                 're-password'=>'required|same:password'
@@ -114,13 +141,13 @@ class HomepageController extends Controller
                 'password.min'=>'Your password must be at least 6 characters',
                 'password.max'=>'Your password must be less than 15 characters',
             ]);
-        $users = new User();
-        $users->name = $request->name;
-        $users->email = $request->email;
-        $users->password = Hash::make($request->password);
-        $users->phone = $request->phone;
-        $users->address = $request->address;
-        $users->save();
+        $customer = new Customers();
+        $customer->name = $request->name;
+        $customer->email = $request->email;
+        $customer->password = Hash::make($request->password);
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->save();
         return redirect()->back()->with('Success', 'Create user account successfully');
     }
 
@@ -137,12 +164,15 @@ class HomepageController extends Controller
                 'password.min'=>'Password must be at least 6 characters',
                 'password.max'=>'Password must be less than 15 characters'
             ]);
-        $credentals = array('email'=>$request->email, 'password'=>$request->password);
+        $credentals = array('email'=>$request->email,'password'=>$request->password);
+        //quan trong la thang auth nay dang kiem tra o bang nao ???
+        var_dump($credentals);
+        var_dump(Auth::attempt($credentals));die();
         if (Auth::attempt($credentals)){
-            return redirect()->back()->with(['flag'=>'Success','message', 'Login successfully']);
+            return redirect('abc')->with('message','abc');
         }
         else{
-            return redirect()->back()->with(['flag'=>"danger", 'message', 'Login unsuccessfully']);
+            return redirect('index')->with('message','hmm');
         }
     }
 
