@@ -5,13 +5,13 @@
             <div class="pull-left auto-width-left">
                 <ul class="top-menu menu-beta l-inline">
                     <li><a href=""><i class="fa fa-home"></i> 154 Dinh Thon Street, Nam Tu Liem distrist, Ha Noi</a></li>
-                    <li><a href=""><i class="fa fa-phone"></i> 0163 296 7751</a></li>
+                    <li><a href=""><i class="fa fa-phone"></i> 0395 737 272</a></li>
                 </ul>
             </div>
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
                 @if(Auth::check())
-                    <li><a href="#">Welcome {{Auth::users()->name}}</a></li>
+                    <li><a href="#">Welcome {{Auth::customers()->name}}</a></li>
                     <li><a href="{{route('logout')}}">Log out</a></li>
                 @else
                     <li><a href="{{route('signup')}}">Sign up</a></li>

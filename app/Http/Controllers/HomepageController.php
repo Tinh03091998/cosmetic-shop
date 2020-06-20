@@ -110,8 +110,12 @@ class HomepageController extends Controller
         $invoices->notes = $request->notes;
         $invoices->save();
 
-        $invoice_details = new Invoice_details();
-        $invoice_details->invoice_id = $invoices->invoice_id;
+        foreach ($cart['items'] as $key => $value){
+            $invoice_details = new Invoice_details();
+            $invoice_details->invoice_id = $invoices->invoice_id;
+//            $invoice_details->product_id = in
+        }
+
 
     }
 
@@ -165,14 +169,13 @@ class HomepageController extends Controller
                 'password.max'=>'Password must be less than 15 characters'
             ]);
         $credentals = array('email'=>$request->email,'password'=>$request->password);
-        //quan trong la thang auth nay dang kiem tra o bang nao ???
         var_dump($credentals);
-        var_dump(Auth::attempt($credentals));die();
+        var_dump(Auth::attempt($credentals));
         if (Auth::attempt($credentals)){
-            return redirect('abc')->with('message','abc');
+            return redirect()->back()->with(['flag'=>'success','message'=>'Login successfully']);
         }
         else{
-            return redirect('index')->with('message','hmm');
+            return redirect()->back()->with(['flag'=>'danger','message'=>'Login successfully']);
         }
     }
 

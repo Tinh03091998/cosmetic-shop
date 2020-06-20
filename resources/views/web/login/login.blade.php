@@ -7,7 +7,7 @@
         </div>
         <div class="pull-right">
             <div class="beta-breadcrumb">
-                <a href="{{route('page-index')}}">Home</a> / <span>Đăng nhập</span>
+                <a href="{{route('page-index')}}">Home</a> / <span>Login</span>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -25,7 +25,7 @@
                 <div class="alert alert-{{Session::get('flag')}}">{{Session::get('message')}}</div>
                 @endif
                 <div class="col-sm-6">
-                    <h4>Đăng nhập</h4>
+                    <h4>Login</h4>
                     <div class="space20">&nbsp;</div>
 
 
