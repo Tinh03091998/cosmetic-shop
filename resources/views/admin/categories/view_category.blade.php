@@ -24,15 +24,15 @@
                                 <table class="jsgrid-table">
                                     <tbody><tr class="jsgrid-header-row">
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 50px;">
-                                            #
+                                            Ordinal
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">
                                             Category name
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;">
-                                            Parent category
+                                            Menu id
                                         </th>
-                                        <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><a href="admin/categories/add"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Add category"></a></th>
+                                        <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><a href="admin/categories/add_category"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Add category"></a></th>
                                     </tr>
                                     </tbody></table>
                             </div>
@@ -50,19 +50,20 @@
                                             <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><?php echo $serial;?></td>
                                             <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{$cat->name}}</td>
                                             <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">
-                                                @if(isset($cat->parent_id))
-                                                    @foreach($categories as $c)
-                                                        @if($cat->parent_id == $c->id)
-                                                            {{$c->name}}
-                                                        @endif
-                                                    @endforeach
-                                                @else
-                                                    --
-                                                @endif
+                                                {{$cat->menu_id}}
+{{--                                                @if(isset($cat->parent_id))--}}
+{{--                                                    @foreach($categories as $category)--}}
+{{--                                                        @if($category->parent_id == $category->id)--}}
+{{--                                                            {{$category->name}}--}}
+{{--                                                        @endif--}}
+{{--                                                    @endforeach--}}
+{{--                                                @else--}}
+{{--                                                    {{$category}}--}}
+{{--                                                @endif--}}
                                             </td>
                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
                                                 <a href="admin/categories/edit/{{$cat->id}}"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></a>
-                                                <a href="admin/categories/delete/{{$cat->id}}"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></a>
+                                                <a href="admin/categories/delete/{{$cat->id}}" onclick="return confirm('Are you sure to delete this category?')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></a>
                                             </td>
                                         </tr>
                                     @endforeach

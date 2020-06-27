@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
-    protected $table = "Categories"; //connect to table in database
+    protected $table = "categories"; //connect to table in database
     //connect to tables
     //connect to tale: menu
     public function menu(){

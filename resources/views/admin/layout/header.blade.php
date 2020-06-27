@@ -129,7 +129,7 @@
                         Settings
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" href="{{route('logout-admin')}}">
                         <i class="mdi mdi-logout text-primary"></i>
                         Logout
                     </a>

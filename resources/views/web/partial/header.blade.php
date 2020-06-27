@@ -10,8 +10,8 @@
             </div>
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
-                @if(Auth::check())
-                    <li><a href="#">Welcome {{Auth::customers()->name}}</a></li>
+                @if(auth('customers')->check())
+                    <li><a href="#">Welcome {{auth('customers')->user()->name}}</a></li>
                     <li><a href="{{route('logout')}}">Log out</a></li>
                 @else
                     <li><a href="{{route('signup')}}">Sign up</a></li>
@@ -66,7 +66,11 @@
 
                                 <div class="center">
                                     <div class="space10">&nbsp;</div>
-                                    <a href="checkout.html" class="beta-btn primary text-center">Order <i class="fa fa-chevron-right"></i></a>
+                                    @if(auth('customers')->check())
+                                        <a href="{{route('order')}}" class="beta-btn primary text-center">Order <i class="fa fa-chevron-right"></i></a>
+                                    @else
+                                        <a href="{{route('login')}}" class="beta-btn primary text-center">Order <i class="fa fa-chevron-right"></i></a>
+                                    @endif
                                 </div>
                             </div>
                         </div>

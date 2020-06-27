@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Categories;
+use App\Comments;
 use App\Customers;
 use App\Invoice_details;
 use App\Invoices;
@@ -14,25 +15,20 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Session;
 
 class HomepageController extends Controller
 {
     use AuthenticatesUsers;
-    //
-    public function getHomepage(){
-
-        return view('admin/home_page/homepage');
-    }
-
     //index
     public function getIndex(){
         $slides = Slides::all();
-        $new_products = Products::where('view', 1)->paginate(5);
+        $new_products = Products::where('id', 1)->paginate(5);
 //        $new_products = Products::paginate(1);
-        $promoted_product = Products::where('promoted_price', '<>', 0)->get();
-        return view('web/home_page/index', compact('slides', 'new_products', 'promoted_product'));
+        $promoted_products = Products::where('promoted_price', '<>', 0)->get();
+        return view('web/home_page/index', compact('slides', 'new_products', 'promoted_products'));
     }
 
     //product type
@@ -47,8 +43,9 @@ class HomepageController extends Controller
     //product detail
     public function getProductDetail(Request $request){
         $products = Products::where('id', $request->product_id)->first();
-        $same_products = Products::where('cat_id', $products->cat_id)->paginate(5);// paginate not paginat ???
-        return view('web/product/product_detail', compact('products', 'same_products'));
+        $same_products = Products::where('cat_id', $products->cat_id)->paginate(5);
+        $comments = Comments::where('pro_id', $request->product_id)->get();
+        return view('web/product/product_detail', compact('products', 'same_products', 'comments'));
     }
 
     //contact
@@ -64,7 +61,7 @@ class HomepageController extends Controller
     //cart
     public function getAddtoCart(Request $request, $id){
         $product = Products::find($id);
-        $old_cart = Session('cart')?Session::get('cart'):null;//
+        $old_cart = Session('cart')?Session::get('cart'):null;
         $cart = new Cart($old_cart);
         $cart->add($product, $id);
         $request->session()->put('cart', $cart);
@@ -86,35 +83,43 @@ class HomepageController extends Controller
     }
 
     //order-checkout
-    public function getCheckout(){
+    public function getOrder(){
         return view('web.checkout.checkout');
     }
 
-    public function postCheckout(Request $request){
+    public function postOrder(Request $request){
         $cart = Session::get('cart');
 //        dd($cart);
         $customer = new Customers();
-        $customer->name = $request->name;
-        $customer->gender = $request->gender;
-        $customer->email = $request->email;
-        $customer->address = $request->address;
-        $customer->phone = $request->phone;
-        $customer->notes = $request->notes;
-        $customer->save();
+//        $customer->name = $request->name;
+////        $customer->gender = $request->gender;
+//        $customer->email = $request->email;
+//        $customer->address = $request->address;
+//        $customer->phone = $request->phone;
+//        $customer->notes = $request->notes;
+//        $customer->save();
 
         $invoices = new Invoices();
-        $invoices->customer_id = $customer->id;
+        $invoices->customer_id = auth('customers')->user()->id;
         $invoices->order_date = date('Y-m-d');
         $invoices->total = $cart->totalPrice;
         $invoices->payment_method = $request->payment_method;
         $invoices->notes = $request->notes;
         $invoices->save();
 
-        foreach ($cart['items'] as $key => $value){
+        foreach ($cart->items as $key => $value){
             $invoice_details = new Invoice_details();
             $invoice_details->invoice_id = $invoices->invoice_id;
 //            $invoice_details->product_id = in
         }
+        Session::get('cart');
+        Session::forget('cart');
+        $data = ['hoten'=>auth('customers')->user()->name];
+        Mail::send('emails.send_email', $data, function ($msg){
+            $msg->from('tinhnt03091998@gmail.com', 'Tinh Nguyen');
+            $msg->to('tinhnt.gha@gmail.com', 'TinhNT')->subject('Your Order Information');
+        });
+        return redirect()->route('page-index')->with('message', 'Order successfully');
 
 
     }
@@ -124,7 +129,7 @@ class HomepageController extends Controller
         return view('web.login.login');
     }
 
-    //log out
+    //sign up
     public function getSignup(){
         return view('web.signup.signup');
     }
@@ -152,7 +157,7 @@ class HomepageController extends Controller
         $customer->phone = $request->phone;
         $customer->address = $request->address;
         $customer->save();
-        return redirect()->back()->with('Success', 'Create user account successfully');
+        return redirect()->route('login')->with('Success', 'Create user account successfully');
     }
 
     //login
@@ -169,20 +174,20 @@ class HomepageController extends Controller
                 'password.max'=>'Password must be less than 15 characters'
             ]);
         $credentals = array('email'=>$request->email,'password'=>$request->password);
-        var_dump($credentals);
-        var_dump(Auth::attempt($credentals));
-        if (Auth::attempt($credentals)){
-            return redirect()->back()->with(['flag'=>'success','message'=>'Login successfully']);
+//        var_dump($credentals);
+//        var_dump(Auth::attempt($credentals));
+        if (auth('customers')->attempt($credentals)){
+            return redirect()->route('page-index')->with(['flag'=>'success','message'=>'Login successfully']);
         }
         else{
-            return redirect()->back()->with(['flag'=>'danger','message'=>'Login successfully']);
+            return redirect()->back()->with(['flag'=>'danger','message'=>'Login unsuccessfully']);
         }
     }
 
     //log out
     public function postLogout(){
-        Auth::logout();
-        return redirect()->route('page-index');
+        auth('customers')->logout();
+        return redirect()->route('login');
     }
 
     //search
@@ -192,4 +197,8 @@ class HomepageController extends Controller
                               ->get();
         return view('web.search.search', compact('products'));
     }
+
+
+
+
 }

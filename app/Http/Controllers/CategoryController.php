@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     //
-    public function getAddcategory(){
+    public function getAddCategory(){
         $categories = Categories::all();
         return view('admin/categories/add_category',['categories'=>$categories]);
     }
-    public function postAddcategory(Request $request){
+    public function postAddCategory(Request $request){
         $this->validate($request,
             [
                 'name'=>'required|min:2|max:255|unique:categories'
@@ -24,16 +24,17 @@ class CategoryController extends Controller
                 'name.unique'=>'Category name has already existed'
             ]);
         $categories = new Categories();
-        $categories->name = $request -> name;
-        if ($request->has('parent_id')){
-            $categories->parent_id = $request -> parent_id;
-        }
-        else{
-            $categories->parent_id = "";
-        }
+        $categories->name = $request->name;
+        $categories->menu_id = $request->menu_id;
+//        if ($request->has('parent_id')){
+//            $categories->parent_id = $request -> parent_id;
+//        }
+//        else{
+//            $categories->parent_id = "";
+//        }
         $categories->save();
 
-        return redirect('admin/categories/add')->with('Notify', 'Save category successfully');
+        return redirect('admin/categories/add_category')->with('Notify', 'Save category successfully');
     }
 
 //    View Categories
@@ -69,14 +70,15 @@ class CategoryController extends Controller
             ]);
         $categories = Categories::all()->find($id);
         $categories->name = $request -> name;
-        if ($request->has('parent_id')){
-            $categories->parent_id = $request -> parent_id;
-        }
-        else{
-            $categories->parent_id = "";
-        }
+//        if ($request->has('parent_id')){
+//            $categories->parent_id = $request -> parent_id;
+//        }
+//        else{
+//            $categories->parent_id = "";
+//        }
         $categories->save();
 
-        return redirect('admin/categories/edit/'.$id)->with('Notify', 'Edit category successfully');
+//        return redirect('admin/categories/edit/'.$id)->with('Notify', 'Edit category successfully');
+        return redirect('admin/categories/view')->with('Notify', 'Edit category successfully');
     }
 }

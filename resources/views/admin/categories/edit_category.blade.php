@@ -32,24 +32,25 @@
                         <form class="forms-sample" method="post" action="admin/categories/edit/{{$categories->id}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
-                                <label for="exampleInputPassword4">Choose parent category <span style="color: red">*</span></label>
-                                <select name="parent_id" aria-controls="order-listing" class="form-control">
-                                    <option value="">--</option>
-                                    @foreach($categories->all() as $cat)
-                                        <option
-                                            @if($categories->parent_id == $cat->id)
-                                            {{'selected'}}
-                                            @endif
-                                            value="{{$cat->id}}">{{$cat->name}}</option>
-                                    @endforeach
-                                </select>
+                                <label for="exampleInputPassword4">Menu <span style="color: red">*</span></label>
+                                <input type="number" value="2" name="menu_id" class="form-control" readonly="true" />
+{{--                                <select name="parent_id" aria-controls="order-listing" class="form-control">--}}
+{{--                                    <option value="">--</option>--}}
+{{--                                    @foreach($categories->all() as $cat)--}}
+{{--                                        <option--}}
+{{--                                            @if($categories->parent_id == $cat->id)--}}
+{{--                                            {{'selected'}}--}}
+{{--                                            @endif--}}
+{{--                                            value="{{$cat->id}}">{{$cat->name}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Category name <span style="color: red">*</span></label>
                                 <input type="text" value="{{$categories->name}}"
                                        name="name" class="form-control" id="exampleInputName1" placeholder="Category name" />
                             </div>
-                            <button type="submit" name="submit" class="btn btn-primary mr-2">Edit category</button>
+                            <button type="submit" name="submit" class="btn btn-primary mr-2">Save category</button>
                         </form>
                     </div>
                 </div>

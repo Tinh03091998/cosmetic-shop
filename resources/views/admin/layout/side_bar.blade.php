@@ -7,29 +7,29 @@
                 <span class="menu-title">Home page</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="mdi mdi-puzzle-outline menu-icon"></i>
-                <span class="menu-title">Manage Menu</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="admin/menus/add">Add Menu</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="admin/menus/view">View Menu</a></li>
-                </ul>
-            </div>
-        </li>
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">--}}
+{{--                <i class="mdi mdi-puzzle-outline menu-icon"></i>--}}
+{{--                <span class="menu-title">Manage Menu</span>--}}
+{{--                <i class="menu-arrow"></i>--}}
+{{--            </a>--}}
+{{--            <div class="collapse" id="ui-basic">--}}
+{{--                <ul class="nav flex-column sub-menu">--}}
+{{--                    <li class="nav-item"> <a class="nav-link" href="admin/menus/add">Add Menu</a></li>--}}
+{{--                    <li class="nav-item"> <a class="nav-link" href="admin/menus/view">View Menu</a></li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </li>--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-advanced" aria-expanded="false" aria-controls="ui-advanced">
                 <i class="mdi mdi-bullseye-arrow menu-icon"></i>
-                <span class="menu-title">Manage Categories</span>
+                <span class="menu-title">Manage categories</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-advanced">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="admin/categories/add">Add category</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="admin/categories/view">View categories</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/categories/add_category">Add category</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/categories/view_category">View categories</a></li>
                 </ul>
             </div>
         </li>
@@ -41,26 +41,27 @@
             </a>
             <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="pages/forms/basic_elements.html">Add products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/forms/advanced_elements.html">Edit products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/forms/validation.html">Delete products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/products/add_product">Add product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/products/view_product">Edit product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/products/view_product">Delete product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/products/product_list">View products</a></li>
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false" aria-controls="editors">
-                <i class="mdi mdi-pencil-box-outline menu-icon"></i>
-                <span class="menu-title">Manage slides</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="editors">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="pages/forms/text_editor.html">Add slides</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/forms/code_editor.html">Edit slides</a></li>
-                    <li class="nav-item"><a class="nav-link" href="pages/forms/code_editor.html">Delete slides</a></li>
-                </ul>
-            </div>
-        </li>
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link" data-toggle="collapse" href="#editors" aria-expanded="false" aria-controls="editors">--}}
+{{--                <i class="mdi mdi-pencil-box-outline menu-icon"></i>--}}
+{{--                <span class="menu-title">Manage slides</span>--}}
+{{--                <i class="menu-arrow"></i>--}}
+{{--            </a>--}}
+{{--            <div class="collapse" id="editors">--}}
+{{--                <ul class="nav flex-column sub-menu">--}}
+{{--                    <li class="nav-item"><a class="nav-link" href="pages/forms/text_editor.html">Add slides</a></li>--}}
+{{--                    <li class="nav-item"><a class="nav-link" href="pages/forms/code_editor.html">Edit slides</a></li>--}}
+{{--                    <li class="nav-item"><a class="nav-link" href="pages/forms/code_editor.html">Delete slides</a></li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </li>--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
                 <i class="mdi mdi-finance menu-icon"></i>
@@ -115,19 +116,19 @@
                 </ul>
             </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#maps" aria-expanded="false" aria-controls="maps">
-                <i class="mdi mdi-map-marker-outline menu-icon"></i>
-                <span class="menu-title">Manage discount codes</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="maps">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/maps/mapeal.html">Add discount code</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/maps/vector-map.html">Delete discount code</a></li>
-                </ul>
-            </div>
-        </li>
+{{--        <li class="nav-item">--}}
+{{--            <a class="nav-link" data-toggle="collapse" href="#maps" aria-expanded="false" aria-controls="maps">--}}
+{{--                <i class="mdi mdi-map-marker-outline menu-icon"></i>--}}
+{{--                <span class="menu-title">Manage discount codes</span>--}}
+{{--                <i class="menu-arrow"></i>--}}
+{{--            </a>--}}
+{{--            <div class="collapse" id="maps">--}}
+{{--                <ul class="nav flex-column sub-menu">--}}
+{{--                    <li class="nav-item"> <a class="nav-link" href="pages/maps/mapeal.html">Add discount code</a></li>--}}
+{{--                    <li class="nav-item"> <a class="nav-link" href="pages/maps/vector-map.html">Delete discount code</a></li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </li>--}}
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="mdi mdi-lock-outline menu-icon"></i>
@@ -136,9 +137,8 @@
             </a>
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Add manufacturer </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Edit manufacturer </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Delete manufacturer </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/manufactures/add_manufacture"> Add manufacturer </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/manufactures/manufacture_list"> View manufacturers </a></li>
                 </ul>
             </div>
         </li>
@@ -150,8 +150,8 @@
             </a>
             <div class="collapse" id="error">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> Add comment </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> Delete comment </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> View comments </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> Delete comments </a></li>
                 </ul>
             </div>
         </li>

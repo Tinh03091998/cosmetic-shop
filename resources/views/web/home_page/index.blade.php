@@ -75,7 +75,7 @@
                                                    href="{{route('add-to-cart', $new_product->id)}}"><i
                                                         class="fa fa-shopping-cart"></i></a>
                                                 <a class="beta-btn primary"
-                                                   href="product.html">{{$new_product->description}} <i
+                                                   href="{{route('product-detail', $new_product->id)}}">{{$new_product->description}} <i
                                                         class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
@@ -91,11 +91,11 @@
                         <div class="beta-products-list">
                             <h4>Promoted Products</h4>
                             <div class="beta-products-details">
-                                <p class="pull-left">Found {{count($promoted_product)}} products</p>
+                                <p class="pull-left">Found {{count($promoted_products)}} products</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
-                                @foreach($promoted_product as $promoted_product)
+                                @foreach($promoted_products as $promoted_product)
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             <div class="single-item-header">
@@ -115,7 +115,7 @@
                                                    href="{{route('add-to-cart', $promoted_product->id)}}"><i
                                                         class="fa fa-shopping-cart"></i></a>
                                                 <a class="beta-btn primary"
-                                                   href="product.html">{{$promoted_product->description}} <i
+                                                   href="{{route('product-detail', $promoted_product->id)}}">{{$promoted_product->description}} <i
                                                         class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>

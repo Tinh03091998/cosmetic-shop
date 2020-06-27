@@ -21,7 +21,7 @@ Route::get('/', function () {
 //route index
 Route::get('index',[
     'as'=>'page-index',
-        'uses'=>'HomepageController@getIndex'
+    'uses'=>'HomepageController@getIndex'
 ]);
 
 //product type
@@ -99,53 +99,31 @@ Route::get('search', [
 ]);
 
 //checkout
-Route::get('checkout', [
+Route::get('order', [
     'as'=>'order',
-    'uses'=>'HomepageController@getCheckout'
+    'uses'=>'HomepageController@getOrder'
 ]);
-Route::post('checkout', [
+Route::post('order', [
     'as'=>'order',
-    'uses'=>'HomepageController@postCheckout'
+    'uses'=>'HomepageController@postOrder'
 ]);
-// admin
-//
-Route::group(['prefix'=>'admin'], function (){
-    //This is Home page
-   Route::get('homepage', 'HomepageController@getHomepage');
-   //Manage Categories
-   Route::group(['prefix'=>'categories'], function (){
-       //add category
-       Route::get('add', 'CategoryController@getAddCategory');
-       Route::post('add', 'CategoryController@postAddCategory');
 
-       //view category
-       Route::get('view', 'CategoryController@getViewCategory');
+//send email
+Route::get('send-mail',[
+   'as'=>'send-email',
+   'uses'=>'SendMailController@getSendEmail'
+]);
+Route::post('send-mail',[
+    'as'=>'send-email',
+    'uses'=>'HomepageController@postSendEmail'
+]);
 
-       //delete category
-       Route::get('delete/{id}', 'CategoryController@getDeleteCategory');
 
-       //edit category
-       Route::get('edit/{id}', 'CategoryController@getEditCategory');
-       Route::post('edit/{id}', 'CategoryController@postEditCategory');
-   });
-
-   //Manage Menu
-    Route::group(['prefix'=>'menus'], function (){
-        //add menu
-        Route::get('add', 'MenuController@getAddMenu');
-        Route::post('add', 'MenuController@postAddMenu');
-
-        //view menu
-        Route::get('view', 'MenuController@getViewMenu');
-
-        //delete menu
-        Route::get('delete/{id}', 'MenuController@getDeleteMenu');
-
-        //edit menu
-        Route::get('edit/{id}', 'MenuController@getEditMenu');
-        Route::post('edit/{id}', 'MenuController@postEditMenu');
-    });
-});
+//comment
+Route::post('comment/{comment_id}', [
+   'as'=>'comment',
+   'uses'=>'CommentController@postComment'
+]);
 //model
     Route::get('model/save', function(){
         $user = new App\User();
@@ -156,3 +134,5 @@ Route::group(['prefix'=>'admin'], function (){
         $user->save();
         echo 'Save successfully';
     });
+
+?>
