@@ -14,7 +14,7 @@ class CreateInvoicesTable extends Migration
     public function up()
     {
         Schema::create('invoices', function (Blueprint $table) {
-            $table->increments('invoice_id');
+            $table->increments('id');
             $table->integer('customer_id')->unsigned();
             $table->longText('notes')->nullable();
 //            $table->timestamp('created_at')->default()->nullable();

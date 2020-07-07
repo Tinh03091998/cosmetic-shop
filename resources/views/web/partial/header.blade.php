@@ -4,18 +4,18 @@
         <div class="container">
             <div class="pull-left auto-width-left">
                 <ul class="top-menu menu-beta l-inline">
-                    <li><a href=""><i class="fa fa-home"></i> 154 Dinh Thon Street, Nam Tu Liem distrist, Ha Noi</a></li>
+                    <li><a href=""><i class="fa fa-home"></i> Ngõ 154, đường Đình Thôn, quận Nam Từ Liêm, Hà Nội</a></li>
                     <li><a href=""><i class="fa fa-phone"></i> 0395 737 272</a></li>
                 </ul>
             </div>
             <div class="pull-right auto-width-right">
                 <ul class="top-details menu-beta l-inline">
                 @if(auth('customers')->check())
-                    <li><a href="#">Welcome {{auth('customers')->user()->name}}</a></li>
-                    <li><a href="{{route('logout')}}">Log out</a></li>
+                    <li><a href="#">Chào mừng {{auth('customers')->user()->name}}</a></li>
+                    <li><a href="{{route('logout')}}">Đăng xuất</a></li>
                 @else
-                    <li><a href="{{route('signup')}}">Sign up</a></li>
-                    <li><a href="{{route('login')}}">Login</a></li>
+                    <li><a href="{{route('signup')}}">Đăng kí</a></li>
+                    <li><a href="{{route('login')}}">Đăng nhập</a></li>
                 @endif
                 </ul>
             </div>
@@ -31,7 +31,7 @@
                 <div class="space10">&nbsp;</div>
                 <div class="beta-comp">
                     <form role="search" method="get" id="searchform" action="{{route('search')}}">
-                        <input type="text" value="" name="search" id="s" placeholder="Enter keyword..." />
+                        <input type="text" value="" name="search" id="s" placeholder="Nhập từ khóa..." />
                         <button class="fa fa-search" type="submit" id="searchsubmit"></button>
                     </form>
                 </div>
@@ -54,22 +54,22 @@
                                     <a class="pull-left" href="#"><img src="web/images/product/{{$product_cart['item']['image']}}" alt=""></a>
                                     <div class="media-body">
                                         <span class="cart-item-title">{{$product_cart['item']['name']}}</span>
-                                        <span class="cart-item-amount">{{$product_cart['quantity']}}*<span>@if($product_cart['item']['pro_price']==0){{number_format($product_cart['item']['selling_price'])}}
-                                                @else {{number_format($product_cart['item']['pro_price'])}} @endif VND</span></span>
+                                        <span class="cart-item-amount">{{$product_cart['quantity']}}*<span>@if($product_cart['item']['promoted_price']==0){{number_format($product_cart['item']['selling_price'])}}
+                                                @else {{number_format($product_cart['item']['promoted_price'])}} @endif VND</span></span>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                             <div class="cart-caption">
-                                <div class="cart-total text-right">Total Price: <span class="cart-total-value">{{Session('cart')->totalPrice}} VND</span></div>
+                                <div class="cart-total text-right">Tổng tiền: <span class="cart-total-value">{{Session('cart')->totalPrice}} VND</span></div>
                                 <div class="clearfix"></div>
 
                                 <div class="center">
                                     <div class="space10">&nbsp;</div>
                                     @if(auth('customers')->check())
-                                        <a href="{{route('order')}}" class="beta-btn primary text-center">Order <i class="fa fa-chevron-right"></i></a>
+                                        <a href="{{route('order')}}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
                                     @else
-                                        <a href="{{route('login')}}" class="beta-btn primary text-center">Order <i class="fa fa-chevron-right"></i></a>
+                                        <a href="{{route('login')}}" class="beta-btn primary text-center">Đặt hàng <i class="fa fa-chevron-right"></i></a>
                                     @endif
                                 </div>
                             </div>
@@ -87,16 +87,16 @@
             <div class="visible-xs clearfix"></div>
             <nav class="main-menu">
                 <ul class="l-inline ov">
-                    <li><a href="{{route('page-index')}}">Home</a></li>
-                    <li><a href="{{route('product-type', 1)}}">Categories</a>
+                    <li><a href="{{route('page-index')}}">Trang chủ</a></li>
+                    <li><a href="{{route('product-type', 1)}}">Loại sản phẩm</a>
                         <ul class="sub-menu">
                         @foreach($category as $category)
                             <li><a href="{{route('product-type', $category->id)}}">{{$category->name}}</a></li>
                         @endforeach
                         </ul>
                     </li>
-                    <li><a href="{{route('about')}}">About</a></li>
-                    <li><a href="{{route('contact')}}">Contact Us</a></li>
+                    <li><a href="{{route('about')}}">Giới thiệu</a></li>
+                    <li><a href="{{route('contact')}}">Liên hệ</a></li>
                 </ul>
                 <div class="clearfix"></div>
             </nav>

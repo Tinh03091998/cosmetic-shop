@@ -118,6 +118,12 @@ Route::post('send-mail',[
     'uses'=>'HomepageController@postSendEmail'
 ]);
 
+//verify customer order
+Route::get('verify-order', [
+    'as'=>'verify-order',
+    'uses'=>'HomepageController@getVerifyOrder'
+]);
+
 
 //comment
 Route::post('comment/{comment_id}', [

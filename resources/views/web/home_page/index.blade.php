@@ -40,9 +40,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="beta-products-list">
-                            <h4>New Products</h4>
+                            <h4>Sản phẩm mới</h4>
                             <div class="beta-products-details">
-                                <p class="pull-left">Found {{count($new_products)}} products</p>
+                                <p class="pull-left">Tìm thấy {{count($new_products)}} sản phẩm</p>
                                 <div class="clearfix"></div>
                             </div>
 
@@ -57,16 +57,16 @@
                                             @endif
                                             <div class="single-item-header">
                                                 <a href="{{route('product-detail', $new_product->id)}}"><img
-                                                        src="web/images/product/{{$new_product->image}}" alt=""></a>
+                                                        src="mark_product.png" style="background-image: url('web/images/product/{{$new_product->image}}');background-size: cover" alt=""></a>
                                             </div>
                                             <div class="single-item-body">
-                                                <p class="single-item-title">{{$new_product->name}}</p>
+                                                <p class="single-item-title" style="width: 212px; height: 45px; overflow: hidden">{{\Illuminate\Support\Str::limit($new_product->name,30)}}</p>
                                                 <p class="single-item-price">
                                                     @if($new_product->promoted_price==0)
-                                                        <span class="flash-sale">{{number_format($new_product->selling_price)}} VND</span>
+                                                        <span class="flash-sale">{{number_format($new_product->selling_price)}} đ</span>
                                                     @else
-                                                        <span class="flash-del">{{number_format($new_product->selling_price)}} VND</span>
-                                                        <span class="flash-sale">{{number_format($new_product->promoted_price)}} VND</span>
+                                                        <span class="flash-del">{{number_format($new_product->selling_price)}} đ</span>
+                                                        <span class="flash-sale">{{number_format($new_product->promoted_price)}} đ</span>
                                                     @endif
                                                 </p>
                                             </div>
@@ -74,7 +74,7 @@
                                                 <a class="add-to-cart pull-left"
                                                    href="{{route('add-to-cart', $new_product->id)}}"><i
                                                         class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary"
+                                                <a class="beta-btn primary" style="height: 156px; width: 212px; overflow: hidden; text-overflow:ellipsis"
                                                    href="{{route('product-detail', $new_product->id)}}">{{$new_product->description}} <i
                                                         class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
@@ -89,9 +89,9 @@
                         <div class="space50">&nbsp;</div>
 
                         <div class="beta-products-list">
-                            <h4>Promoted Products</h4>
+                            <h4>Sản phẩm khuyến mại</h4>
                             <div class="beta-products-details">
-                                <p class="pull-left">Found {{count($promoted_products)}} products</p>
+                                <p class="pull-left">Tìm thấy {{count($promoted_products)}} sản phẩm</p>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="row">
@@ -100,21 +100,21 @@
                                         <div class="single-item">
                                             <div class="single-item-header">
                                                 <a href="{{route('product-detail', $promoted_product->id)}}"><img
-                                                        src="web/images/product/{{$promoted_product->image}}"
+                                                        src="mark_product.png" style="background-image: url('web/images/product/{{$promoted_product->image}}');background-size: cover"
                                                         alt=""></a>
                                             </div>
                                             <div class="single-item-body">
-                                                <p class="single-item-title">{{$promoted_product->name}}</p>
+                                                <p class="single-item-title" style="width: 212px; height: 45px; overflow: hidden">{{\Illuminate\Support\Str::limit($promoted_product->name,30)}}</p>
                                                 <p class="single-item-price">
-                                                    <span class="flash-del">{{number_format($promoted_product->selling_price)}} VND</span>
-                                                    <span class="flash-sale">{{number_format($promoted_product->promoted_price)}} VND</span>
+                                                    <span class="flash-del">{{number_format($promoted_product->selling_price)}} đ</span>
+                                                    <span class="flash-sale">{{number_format($promoted_product->promoted_price)}} đ</span>
                                                 </p>
                                             </div>
                                             <div class="single-item-caption">
                                                 <a class="add-to-cart pull-left"
                                                    href="{{route('add-to-cart', $promoted_product->id)}}"><i
                                                         class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary"
+                                                <a class="beta-btn primary" style="height: 156px; width: 212px; overflow: hidden"
                                                    href="{{route('product-detail', $promoted_product->id)}}">{{$promoted_product->description}} <i
                                                         class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>

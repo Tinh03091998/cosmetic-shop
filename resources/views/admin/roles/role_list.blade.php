@@ -1,6 +1,6 @@
 @extends('admin/layout/index')
 @section('title')
-    Admin User
+    Role List
 @endsection
 @section('content')
     <div class="content-wrapper">
@@ -17,10 +17,9 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Danh sách tài khoản</h4>
+                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Danh sách vai trò</h4>
 
-                        <p>Có tất cả <b><?php $count = DB::table('users')->count(); echo $count?></b> tài khoản admin
-                        </p><br>
+                        <p>Có tất cả: <b><?php $count = DB::table('roles')->count(); echo $count?></b> vai trò</p><br>
 
                         <div id="js-grid" class="jsgrid" style="position: relative; height: 500px; width: 100%;">
                             <div class="jsgrid-grid-header jsgrid-header-scrollbar">
@@ -28,24 +27,21 @@
                                     <tbody>
                                     <tr class="jsgrid-header-row">
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-                                            style="width: 50px;">
+                                            style="width: 10px;">
                                             #
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-                                            style="width: 100px;">
-                                            Họ & Tên
+                                            style="width: 50px;">
+                                            Tên vai trò
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
                                             style="width: 150px;">
-                                            Email
-                                        </th>
-                                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable"
-                                            style="width: 100px;">
-                                            Chức vụ
+                                            Quyền hạn
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center"
-                                            style="width: 50px;">Hoạt động
-                                        </th>
+                                            style="width: 50px;"><a href="admin/roles/add_role"><input
+                                                    class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button"
+                                                    type="button" title="Add role"></a></th>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -56,47 +52,47 @@
                                     <?php
                                     $stt = 0
                                     ?>
-                                    @foreach($users as $user)
+                                    @foreach($roles as $role)
                                         <?php
                                         $stt += 1;
                                         ?>
                                         <tr class="jsgrid-row">
                                             <td class="jsgrid-cell jsgrid-align-center"
-                                                style="width: 50px;"><?php echo $stt;?></td>
+                                                style="width: 10px;"><?php echo $stt;?></td>
                                             <td class="jsgrid-cell jsgrid-align-center"
-                                                style="width: 100px;">{{$user->name}}</td>
-                                            <td class="jsgrid-cell jsgrid-align-center"
-                                                style="width: 150px;">{{$user->email}}</td>
-                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">
-                                                @if($user->getRoleNames()->isEmpty())
-                                                    <span class="btn btn-danger">Chưa có chức vụ</span>
+                                                style="width: 50px;"><span
+                                                    class="btn btn-primary">{{$role->name}}</span></td>
+                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">
+                                                @if($role->getPermissionNames()->isEmpty())
+                                                    <span class="btn btn-danger">Chưa có quyền</span>
                                                 @else
-
-                                                    @foreach($user->getRoleNames() as $userRole)
-                                                        <span class="btn btn-primary"
-                                                              style="margin-bottom: 5px;">{{$userRole}}</span>
-                                                    @endforeach
+                                                    @if(count($role->getPermissionNames()) == DB::table('permissions')->count())
+                                                        <span class="btn btn-success">Tất cả quyền</span>
+                                                    @else
+                                                        @foreach($role->getPermissionNames() as $permission)
+                                                            <span
+                                                                class="btn btn-outline-primary btn-fw">{{$permission}}</span>
+                                                        @endforeach
+                                                    @endif
                                                 @endif
-
                                             </td>
                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center"
                                                 style="width: 50px;">
-                                                <a href="admin/users/themchucvu/{{$user->id}}"><input
-                                                        class="jsgrid-button jsgrid-update-button" type="button"
-                                                        title="Thêm chức vụ"></a>
-                                                <a href="admin/users/xoa/{{$user->id}}"><input
+                                                <a href="admin/roles/edit_role/{{$role->id}}"><input
+                                                        class="jsgrid-button jsgrid-edit-button" type="button"
+                                                        title="Sửa vai trò"></a>
+                                                <a href="admin/roles/delete_role/{{$role->id}}" onclick="return confirm('Are you sure to delete this role')"><input
                                                         class="jsgrid-button jsgrid-delete-button" type="button"
-                                                        title="Xóa"></a>
+                                                        title="Xóa vai trò"></a>
                                             </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
-
                             <div class="jsgrid-pager-container">
                                 <ul class="pagination" style="margin-top: 50px;">
-                                    {!! $users->links() !!}
+                                    {!! $roles->links() !!}
                                 </ul>
                             </div>
                         </div>

@@ -15,10 +15,10 @@ class Comments extends Model
     ];
 
     public function products(){
-        return $this->belongsTo('App\Products', 'product_id', 'id');
+        return $this->belongsToMany('App\Products', 'pro_id', 'id');
     }
 
-    public function users(){
+    public function customers(){
         return $this->belongsTo('App\Customers', 'customer_id', 'id');
     }
 }

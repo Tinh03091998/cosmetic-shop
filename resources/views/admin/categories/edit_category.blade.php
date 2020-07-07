@@ -28,7 +28,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Edit category : {{$categories->name}}</h4>
+                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Sửa danh mục : {{$categories->name}}</h4>
                         <form class="forms-sample" method="post" action="admin/categories/edit/{{$categories->id}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
@@ -46,11 +46,11 @@
 {{--                                </select>--}}
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputName1">Category name <span style="color: red">*</span></label>
+                                <label for="exampleInputName1">Tên danh mục <span style="color: red">*</span></label>
                                 <input type="text" value="{{$categories->name}}"
-                                       name="name" class="form-control" id="exampleInputName1" placeholder="Category name" />
+                                       name="name" class="form-control" id="exampleInputName1" placeholder="Tên danh mục" />
                             </div>
-                            <button type="submit" name="submit" class="btn btn-primary mr-2">Save category</button>
+                            <button type="submit" name="submit" class="btn btn-primary mr-2">Lưu danh mục</button>
                         </form>
                     </div>
                 </div>

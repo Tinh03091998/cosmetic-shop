@@ -28,7 +28,7 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Add category</h4>
+                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Thêm danh mục</h4>
                         <form class="forms-sample" method="post" action="admin/categories/add_category">
 {{--                            add token line to fix error form process--}}
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -43,10 +43,10 @@
                                 <input type="number" value="2" name="menu_id" class="form-control" readonly="true" />
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputName1">Category name <span style="color: red">*</span></label>
-                                <input type="text" value="" name="name" class="form-control" id="exampleInputName1" placeholder="Category name" />
+                                <label for="exampleInputName1">Tên danh mục <span style="color: red">*</span></label>
+                                <input type="text" value="" name="name" class="form-control" id="exampleInputName1" placeholder="Tên danh mục" />
                             </div>
-                            <button type="submit" name="submit" class="btn btn-primary mr-2">Add category</button>
+                            <button type="submit" name="submit" class="btn btn-primary mr-2">Thêm danh mục</button>
                         </form>
                     </div>
                 </div>

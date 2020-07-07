@@ -32,8 +32,8 @@
                         <div class="brand-logo">
                             <img src="{{url('/admin_asset/images/logo.svg')}}" alt="logo" />
                         </div>
-                        <h4>Welcome back!</h4>
-                        <h6 class="font-weight-light">Happy to see you again!</h6>
+                        <h4>Chào mừng trở lại!</h4>
+                        <h6 class="font-weight-light">Rất vui khi gặp lại bạn!</h6>
                         <form method="post" action="{{route('login-admin')}}" class="pt-3">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
@@ -46,38 +46,38 @@
                                         </ul>
                                     </div>
                                 @endif
-                                <label for="exampleInputEmail">Username</label>
+                                <label for="exampleInputEmail">Tên người dùng</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend bg-transparent">
                       <span class="input-group-text bg-transparent border-right-0">
                         <i class="mdi mdi-account-outline text-primary"></i>
                       </span>
                                     </div>
-                                    <input type="text" name="email" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Username" />
+                                    <input type="text" name="email" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Tên người dùng" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword">Password</label>
+                                <label for="exampleInputPassword">Mật khẩu</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend bg-transparent">
                       <span class="input-group-text bg-transparent border-right-0">
                         <i class="mdi mdi-lock-outline text-primary"></i>
                       </span>
                                     </div>
-                                    <input type="password" name="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Password" />
+                                    <input type="password" name="password" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="Mật khẩu" />
                                 </div>
                             </div>
                             <div class="my-2 d-flex justify-content-between align-items-center">
                                 <div class="form-check">
                                     <label class="form-check-label text-muted">
                                         <input type="checkbox" class="form-check-input" />
-                                        Keep me signed in
+                                        Duy trì đăng nhập
                                     </label>
                                 </div>
-                                <a href="#" class="auth-link text-black">Forgot password?</a>
+                                <a href="#" class="auth-link text-black">Quên mật khẩu?</a>
                             </div>
                             <div class="my-3">
-                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="{{route('homepage')}}">LOGIN</button>
+                                <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="{{route('homepage')}}">Đăng nhập</button>
                             </div>
 {{--                            <div class="mb-2 d-flex">--}}
 {{--                                <button type="button" class="btn btn-facebook auth-form-btn flex-grow mr-1">--}}

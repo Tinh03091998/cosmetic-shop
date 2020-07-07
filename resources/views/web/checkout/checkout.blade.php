@@ -7,7 +7,7 @@
         </div>
         <div class="pull-right">
             <div class="beta-breadcrumb">
-                <a href="{{route('page-index')}}">Home page</a> / <span>Order</span>
+                <a href="{{route('page-index')}}">Trang chủ</a> / <span>Đặt hàng</span>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -21,11 +21,11 @@
             <input type="hidden" name="_token" value="{{csrf_token()}}">
             <div class="row">
                 <div class="col-sm-6">
-                    <h4>Order</h4>
+                    <h4>Đặt hàng</h4>
                     <div class="space20">&nbsp;</div>
 
                     <div class="form-block">
-                        <label for="name">Full name*</label>
+                        <label for="name">Họ tên*</label>
                         <input type="text" name="name" placeholder="Họ tên" readonly="true" value="{{auth('customers')->user()->name}}" required>
                     </div>
 {{--                    <div class="form-block">--}}
@@ -41,24 +41,24 @@
                     </div>
 
                     <div class="form-block">
-                        <label for="address">Address*</label>
+                        <label for="address">Địa chỉ*</label>
                         <input type="text" name="address" placeholder="Street Address" value="{{auth('customers')->user()->address}}" required>
                     </div>
 
 
                     <div class="form-block">
-                        <label for="phone">Phone*</label>
+                        <label for="phone">Điện thoại*</label>
                         <input type="text" name="phone" value="{{auth('customers')->user()->phone}}" required>
                     </div>
 
                     <div class="form-block">
-                        <label for="notes">Notes</label>
+                        <label for="notes">Ghi chú</label>
                         <textarea name="notes"></textarea>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="your-order">
-                        <div class="your-order-head"><h5>Your order</h5></div>
+                        <div class="your-order-head"><h5>Đơn hàng của bạn</h5></div>
                         <div class="your-order-body" style="padding: 0px 10px">
                             <div class="your-order-item">
                                 <div>
@@ -81,45 +81,46 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="your-order-item">
-                                <div class="pull-left"><p class="your-order-f18">Total products:</p></div>
+                                <div class="pull-left"><p class="your-order-f18">Tổng sản phẩm:</p></div>
                                 <div class="pull-right"><h5 class="color-black">{{$cart->totalQuatity}}</h5></div>
                                 <div class="clearfix"></div>
                             </div>
                             <div class="your-order-item">
-                                <div class="pull-left"><p class="your-order-f18">Total cost:</p></div>
+                                <div class="pull-left"><p class="your-order-f18">Tổng tiền:</p></div>
                                 <div class="pull-right"><h5 class="color-black">{{$cart->totalPrice}}</h5></div>
                                 <div class="clearfix"></div>
                             </div>
                             @endif
                         </div>
-                        <div class="your-order-head"><h5>Payment method</h5></div>
+                        <div class="your-order-head"><h5>Phương thức thanh toán</h5></div>
 
                         <div class="your-order-body">
                             <ul class="payment_methods methods">
                                 <li class="payment_method_bacs">
                                     <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="COD" checked="checked" data-order_button_text=""
                                     name="payment_method">
-                                    <label for="payment_method_bacs">Payment when I receive products </label>
+                                    <label for="payment_method_bacs">Thanh toán khi nhận hàng </label>
                                     <div class="payment_box payment_method_bacs" style="display: block;">
-                                        When shop sends products to you, you check your order and pay for shipper.
+                                        Bạn vui lòng kiểm tra hóa đơn và thanh toán tiền cho nhân viên giao hàng khi nhân viên giao hàng giao đồ đến
+                                        cho bạn!
                                     </div>
                                 </li>
 
                                 <li class="payment_method_cheque">
                                     <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="ATM" data-order_button_text="">
-                                    <label for="payment_method_cheque">Transfer </label>
+                                    <label for="payment_method_cheque">Chuyển khoản </label>
                                     <div class="payment_box payment_method_cheque" style="display: none;">
-                                        Transfer into account:
-                                        <br>- Account number: 123 456 789
-                                        <br>- Account owner: Nguyen Thi Tinh
-                                        <br>- Vietcombank, Chuong Duong branch
+                                        Bạn vui lòng chuyển tiền vào tài khoản:
+                                        <br>- Số tài khoản: 123 456 789
+                                        <br>- Chủ tài khoản: Nguyen Thi Tinh
+                                        <br>- Ngân hàng Vietcombank, chi nhanh Chương Dương
                                     </div>
                                 </li>
 
                             </ul>
                         </div>
 
-                        <div class="text-center"><button type="submit" class="beta-btn primary" href="{{route('page-index')}}" href="{{route('send-email')}}">Order <i class="fa fa-chevron-right"></i></button></div>
+                        <div class="text-center"><button type="submit" class="beta-btn primary" href="{{route('page-index')}}" href="{{route('send-email')}}">Đặt hàng <i class="fa fa-chevron-right"></i></button></div>
                     </div> <!-- .your-order -->
                 </div>
             </div>

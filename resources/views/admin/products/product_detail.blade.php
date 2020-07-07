@@ -41,7 +41,7 @@
                             <a href="admin/products/product_list">
                                 <button type="button" style="float: left;" class="btn btn-google btn-icon-text">
                                     <i class="mdi mdi-file-document btn-icon-prepend"></i>
-                                    Product list
+                                    Danh sách sản phẩm
                                 </button>
                             </a>
 {{--                            <a href="admin/sanpham/sua/{{$product->id}}">--}}
@@ -58,20 +58,20 @@
                                 text-transform: capitalize;
                                 display: flex;
                                 justify-content: center;
-                                ">Product Detail</h1>
+                                ">Chi tiết sản phẩm</h1>
                         </div>
                         <ul class="nav nav-tabs" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link" id="home-tab" data-toggle="tab" href="#home-1" role="tab"
-                                   aria-controls="home-1" aria-selected="false">Image</a>
+                                   aria-controls="home-1" aria-selected="false">Ảnh</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link active show" id="profile-tab" data-toggle="tab" href="#profile-1"
-                                   role="tab" aria-controls="profile-1" aria-selected="true">Detail</a>
+                                   role="tab" aria-controls="profile-1" aria-selected="true">Chi tiết</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact-1" role="tab"
-                                   aria-controls="contact-1" aria-selected="false">Description</a>
+                                   aria-controls="contact-1" aria-selected="false">Mô tả</a>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -95,10 +95,10 @@
                                          alt="sample image">
                                     <div class="media-body" style="margin-left: 30px">
                                         <p class="card-description">
-                                            Product name : <b>{{$products->name}}</b>
+                                            Tên sản phẩm : <b>{{$products->name}}</b>
                                         </p>
                                         <p class="card-description">
-                                            Product belongs to category : <b>{{$products->categories->name}}</b>
+                                            Sản phẩm thuộc danh mục : <b>{{$products->categories->name}}</b>
                                         </p>
 {{--                                        <p class="card-description">--}}
 {{--                                            Import price of product :--}}
@@ -110,24 +110,23 @@
 {{--                                            @endif--}}
 {{--                                        </p>--}}
                                         <p class="card-description">
-                                            Selling price :
+                                            Giá bán :
                                             @if($products->selling_price == null)
-                                                <b style="color: red">Vui lòng nhập hoá đơn nhập cho sản phẩm này!</b>
+                                                <b style="color: red">Nhập hóa đơn nhập cho sản phẩm này!</b>
                                             @else
                                                 <b>{{number_format($products->selling_price, 0, ',', '.')}} VNĐ</b>
                                             @endif
                                         </p>
                                         <p class="card-description">
-                                            Promoted price :
+                                            Giá khuyến mãi :
                                             @if($products->promoted_price == null)
-                                                <b style="color: red">Vui lòng nhập hoá đơn nhập cho sản phẩm này!</b>
+                                                <b style="color: red">Vui lòng nhập hóa đơn nhập cho sản phẩm này!</b>
                                             @else
                                                 <b>{{number_format($products->promoted_price, 0, ',', '.')}} VNĐ</b>
                                             @endif
                                         </p>
                                         <p class="card-description">
-                                        <?php print_r($products->manufactures); ?>
-                                            Nơi sản xuất :<b>{{$products->manufactures}}</b>
+                                            Nơi sản xuất :<b>{{$products->manufactures->name}}</b>
                                         </p>
                                     </div>
                                 </div>

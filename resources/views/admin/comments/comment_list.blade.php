@@ -1,6 +1,6 @@
 @extends('admin/layout/index')
 @section('title')
-    Product List
+    Comment List
 @endsection
 @section('content')
     <div class="content-wrapper">
@@ -17,9 +17,9 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Danh sách sản phẩm</h4>
+                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Danh sách bình luận</h4>
 
-                        <p>Có tất cả: <b><?php $count = DB::table('products')->count(); echo $count?></b> sản phẩm</p><br>
+                        <p>Have total: <b><?php $count = DB::table('comments')->count(); echo $count?></b> bình luận</p><br>
 
                         <div id="js-grid" class="jsgrid" style="position: relative; height: 500px; width: 100%;">
                             <div class="jsgrid-grid-header jsgrid-header-scrollbar">
@@ -30,18 +30,15 @@
                                             #
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 120px;">
-                                            Danh mục
+                                            Tên khách hàng
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;">
                                             Tên sản phẩm
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">
-                                            Ảnh
+                                            Nội dung bình luận
                                         </th>
-                                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">
-                                            Trạng thái
-                                        </th>
-                                        <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;"><a href="admin/products/add_product"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Thêm sản phẩm"></a></th>
+{{--                                        <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;"><a href="admin/products/add_product"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Add product"></a></th>--}}
                                     </tr>
                                     </tbody></table>
                             </div>
@@ -51,20 +48,18 @@
                                     <?php
                                     $stt = 0
                                     ?>
-                                    @foreach($products as $product)
+                                    @foreach($comments as $comment)
                                         <?php
                                         $stt+=1;
                                         ?>
                                         <tr class="jsgrid-row">
                                             <td class="jsgrid-cell jsgrid-align-center" style="width: 30px;">{{$stt}}</td>
-                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 120px;">{{$product->categories->name}}</td>
-                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">{{$product->name}}</td>
-                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;"><a href="web/images/product/{{$product->image}}"><img src="web/images/product/{{$product->image}}" style="    width: 50px;height: 50px;border-radius: 0%;" alt=""></a></td>
+                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 120px;">{{$comment->products->name}}</td>
+                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">{{$comment->customers->name}}</td>
+                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{$comment->content}}</td>
 
                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;">
-                                                <a href="admin/products/product_detail/{{$product->id}}"><input class="jsgrid-button jsgrid-clear-filter-button" type="button" title="Xem chi tiết"></a>
-                                                <a href="admin/products/edit_product/{{$product->id}}"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Sửa"></a>
-                                                <a href="admin/products/delete_product/{{$product->id}}" onclick="return confirm('Are you sure to delete this product')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Xóa"></a>
+                                                <a href="admin/comments/delete_comment/{{$comment->id}}" onclick="return confirm('Are you sure to delete this comment')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Xóa"></a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -73,7 +68,7 @@
                             </div>
                             <div class="jsgrid-pager-container" >
                                 <ul class="pagination" style="margin-top: 50px;">
-                                    {!! $products->links() !!}
+                                    {!! $comments->links() !!}
                                 </ul>
                             </div>
                         </div>

@@ -15,4 +15,11 @@ class Customers extends Authenticatable
 
     protected $hidden = ['password',  'remember_token'];
 
+    public function comments(){
+        return $this->hasMany('App\Comments', 'customer_id', 'id');
+    }
+
+    public function contacts(){
+        return $this->hasMany(Contact::class, 'customer_id', 'id');
+    }
 }

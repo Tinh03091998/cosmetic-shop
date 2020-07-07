@@ -15,24 +15,24 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Category list</h4>
+                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Danh sách danh mục</h4>
 
-                        <p>Have all <b><?php $count = DB::table('categories')->count(); echo $count?></b> Categories</p><br>
+                        <p>Có tất cả <b><?php $count = DB::table('categories')->count(); echo $count?></b> danh mục</p><br>
 
                         <div id="js-grid" class="jsgrid" style="position: relative; height: 500px; width: 100%;">
                             <div class="jsgrid-grid-header jsgrid-header-scrollbar">
                                 <table class="jsgrid-table">
                                     <tbody><tr class="jsgrid-header-row">
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 50px;">
-                                            Ordinal
+                                            STT
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">
-                                            Category name
+                                            Tên danh mục
                                         </th>
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;">
-                                            Menu id
+                                            Mã menu
                                         </th>
-                                        <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><a href="admin/categories/add_category"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Add category"></a></th>
+                                        <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><a href="admin/categories/add_category"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Thêm danh mục"></a></th>
                                     </tr>
                                     </tbody></table>
                             </div>
@@ -62,8 +62,8 @@
 {{--                                                @endif--}}
                                             </td>
                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
-                                                <a href="admin/categories/edit/{{$cat->id}}"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Edit"></a>
-                                                <a href="admin/categories/delete/{{$cat->id}}" onclick="return confirm('Are you sure to delete this category?')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Delete"></a>
+                                                <a href="admin/categories/edit/{{$cat->id}}"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Sửa"></a>
+                                                <a href="admin/categories/delete/{{$cat->id}}" onclick="return confirm('Are you sure to delete this category?')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Xóa"></a>
                                             </td>
                                         </tr>
                                     @endforeach

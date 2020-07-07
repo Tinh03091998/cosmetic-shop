@@ -7,9 +7,9 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="beta-products-list">
-                            <h4>Search</h4>
+                            <h4>Tìm kiếm</h4>
                             <div class="beta-products-details">
-                                <p class="pull-left">Found {{count($products)}} products</p>
+                                <p class="pull-left">Tìm thấy {{count($products)}} sản phẩm</p>
                                 <div class="clearfix"></div>
                             </div>
 
@@ -18,7 +18,7 @@
                                     <div class="col-sm-3">
                                         <div class="single-item">
                                             @if($product->pro_price!=0)
-                                                <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
+                                                <div class="ribbon-wrapper"><div class="ribbon sale">Giảm giá</div></div>
                                             @endif
                                             <div class="single-item-header">
                                                 <a href="{{route('product-detail', $product->id)}}"><img src="web/images/product/{{$product->image}}" alt=""></a>

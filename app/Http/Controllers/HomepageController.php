@@ -6,11 +6,13 @@ use App\Cart;
 use App\Categories;
 use App\Comments;
 use App\Customers;
+use App\Invoice;
 use App\Invoice_details;
 use App\Invoices;
 use App\Products;
 use App\Slides;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,9 +27,10 @@ class HomepageController extends Controller
     //index
     public function getIndex(){
         $slides = Slides::all();
-        $new_products = Products::where('id', 1)->paginate(5);
+        $new_products = Products::orderBy('created_at', 'desc')->paginate(4);
+//        $new_products = Products::where('id', 1)->paginate(5);
 //        $new_products = Products::paginate(1);
-        $promoted_products = Products::where('promoted_price', '<>', 0)->get();
+        $promoted_products = Products::where('promoted_price', '<>', 0)->limit(4)->get();
         return view('web/home_page/index', compact('slides', 'new_products', 'promoted_products'));
     }
 
@@ -89,39 +92,73 @@ class HomepageController extends Controller
 
     public function postOrder(Request $request){
         $cart = Session::get('cart');
-//        dd($cart);
         $customer = new Customers();
-//        $customer->name = $request->name;
-////        $customer->gender = $request->gender;
-//        $customer->email = $request->email;
-//        $customer->address = $request->address;
-//        $customer->phone = $request->phone;
-//        $customer->notes = $request->notes;
-//        $customer->save();
 
         $invoices = new Invoices();
         $invoices->customer_id = auth('customers')->user()->id;
         $invoices->order_date = date('Y-m-d');
-        $invoices->total = $cart->totalPrice;
+        $invoices->total_cost = $cart->totalPrice;
         $invoices->payment_method = $request->payment_method;
         $invoices->notes = $request->notes;
+        $email = auth('customers')->user()->email;
         $invoices->save();
-
-        foreach ($cart->items as $key => $value){
+//        dd($invoices->id);
+        foreach ($cart->items as $key){
             $invoice_details = new Invoice_details();
-            $invoice_details->invoice_id = $invoices->invoice_id;
-//            $invoice_details->product_id = in
+            $invoice_details->invoice_id = $invoices->id;
+            $invoice_details->pro_id = $key['item']->id;
+            $invoice_details->unit_price = $key['price'];
+            $invoice_details->amount = $key['quantity'];
+            $invoice_details->save();
         }
+
+        if ($invoices->id) {
+            $customer = auth('customers')->user();
+            $email = auth('customers')->user()->email;
+            $code = bcrypt(md5(time() . $email));
+            $url = route('verify-order', ['id' => $invoices->id, 'code' => $code]);
+
+            $invoices->verify_code = $code;
+            $invoices->save();
+            $data = [
+                'route' => $url,
+                'invoice' => $invoices,
+                'products' => $cart->items,
+                'customer' => $customer
+            ];
+            Mail::send('emails.send_email', $data, function ($message) use ($email) {
+                $message->to($email, 'Xác nhận hoá đơn')->subject('Xác nhận hoá đơn');
+            });
+        }
+
         Session::get('cart');
         Session::forget('cart');
-        $data = ['hoten'=>auth('customers')->user()->name];
-        Mail::send('emails.send_email', $data, function ($msg){
-            $msg->from('tinhnt03091998@gmail.com', 'Tinh Nguyen');
-            $msg->to('tinhnt.gha@gmail.com', 'TinhNT')->subject('Your Order Information');
-        });
-        return redirect()->route('page-index')->with('message', 'Order successfully');
+//        $data = ['hoten'=>auth('customers')->user()->name];
+//        Mail::send('emails.send_email', $data, function ($msg){
+//            $msg->from('tinhnt03091998@gmail.com', 'Tinh Nguyen');
+//            $msg->to('tinhnt.gha@gmail.com', 'TinhNT')->subject('Your Order Information');
+//        });
+        return redirect()->route('page-index')->with('message', 'Đặt hàng thành công');
+    }
 
+    public function getVerifyOrder(Request $request){
+        $code = $request->code;
+        $id = $request->id;
 
+        $checkInvoice = Invoices::where([
+            'verify_code' => $code,
+            'id' => $id
+        ])->first();
+
+        if (!$checkInvoice){
+            return redirect()->route('page-index')->with('error','Xin lỗi ! Đường dẫn xác nhận hoá đơn không tồn tại. Vui lòng thử lại hoặc liên hệ lại với cửa hàng . Xin cảm ơn!');
+        }
+
+        $checkInvoice->verify_status = 1;
+        $checkInvoice->verify_time = Carbon::now();
+        $checkInvoice->save();
+
+        return redirect()->route('page-index')->with('message','Xác nhận hoá đơn thành công. Cảm ơn quý khách đã tin dùng sản phẩm của chúng tôi. Chúng tôi sẽ giao hàng đến với bạn sớm nhất có thể .Xin cảm ơn !');
     }
 
     //login

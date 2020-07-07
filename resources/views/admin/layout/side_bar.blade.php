@@ -4,7 +4,7 @@
         <li class="nav-item">
             <a class="nav-link" href="admin/homepage">
                 <i class="mdi mdi-view-dashboard-outline menu-icon"></i>
-                <span class="menu-title">Home page</span>
+                <span class="menu-title">Trang chủ</span>
             </a>
         </li>
 {{--        <li class="nav-item">--}}
@@ -20,31 +20,31 @@
 {{--                </ul>--}}
 {{--            </div>--}}
 {{--        </li>--}}
+        @can('categories roles')
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-advanced" aria-expanded="false" aria-controls="ui-advanced">
                 <i class="mdi mdi-bullseye-arrow menu-icon"></i>
-                <span class="menu-title">Manage categories</span>
+                <span class="menu-title">Quản lý danh mục</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-advanced">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="admin/categories/add_category">Add category</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="admin/categories/view_category">View categories</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/categories/add_category">Thêm danh mục</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/categories/view_category">Danh sách danh mục</a></li>
                 </ul>
             </div>
         </li>
+        @endcan
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
                 <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-                <span class="menu-title">Manage products</span>
+                <span class="menu-title">Quản lý sản phẩm</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="form-elements">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"><a class="nav-link" href="admin/products/add_product">Add product</a></li>
-                    <li class="nav-item"><a class="nav-link" href="admin/products/view_product">Edit product</a></li>
-                    <li class="nav-item"><a class="nav-link" href="admin/products/view_product">Delete product</a></li>
-                    <li class="nav-item"><a class="nav-link" href="admin/products/product_list">View products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/products/add_product">Thêm sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admin/products/product_list">Danh sách sản phẩm</a></li>
                 </ul>
             </div>
         </li>
@@ -65,28 +65,26 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
                 <i class="mdi mdi-finance menu-icon"></i>
-                <span class="menu-title">Manage accounts</span>
+                <span class="menu-title">Quản lý tài khoản</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/charts/chartjs.html">Add account</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/charts/morris.html">Edit account</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/charts/flot-chart.html">Delete account</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/accounts/admin-account-list">Danh sách admin</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/accounts/customer-account-list">Danh sách khách hàng</a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
                 <i class="mdi mdi-table-large menu-icon"></i>
-                <span class="menu-title">Manage roles</span>
+                <span class="menu-title">Quản lý vai trò</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.html">Add role</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/data-table.html">Edit role</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/tables/js-grid.html">Delete role</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/roles/add_role">Thêm vai trò</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/roles/role_list">Danh sách vai trò</a></li>
                 </ul>
             </div>
         </li>
@@ -105,14 +103,14 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
                 <i class="mdi mdi-apple-keyboard-command menu-icon"></i>
-                <span class="menu-title">Manage transactions</span>
+                <span class="menu-title">Quản lý giao dịch</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/icons/flag-icons.html">Add transaction</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/icons/font-awesome.html">Edit transaction</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/icons/simple-line-icon.html">Delete transaction</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/import_invoices/add_import_invoice">Thêm hóa đơn nhập</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="transactions/import_invoices/import_invoice_list">Danh sách hóa đơn nhập</a></li>
+{{--                    <li class="nav-item"> <a class="nav-link" href="pages/icons/simple-line-icon.html">Xóa hóa đơn nhập</a></li>--}}
                 </ul>
             </div>
         </li>
@@ -132,26 +130,26 @@
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="mdi mdi-lock-outline menu-icon"></i>
-                <span class="menu-title">Manage manufacturers</span>
+                <span class="menu-title">Quản lý nhà sản xuất</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="admin/manufactures/add_manufacture"> Add manufacturer </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="admin/manufactures/manufacture_list"> View manufacturers </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/manufactures/add_manufacture"> Thêm nhà sản xuất </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/manufactures/manufacture_list"> Danh sách nhà sản xuất </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="transactions/import_invoices/import_invoice_list">Danh sách hóa đơn bán</a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
                 <i class="mdi mdi-security-account-outline menu-icon"></i>
-                <span class="menu-title">Manage comments</span>
+                <span class="menu-title">Quản lý bình luận</span>
                 <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="error">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-404.html"> View comments </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="pages/samples/error-500.html"> Delete comments </a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/comments/comment_list"> Danh sách bình luận </a></li>
                 </ul>
             </div>
         </li>
