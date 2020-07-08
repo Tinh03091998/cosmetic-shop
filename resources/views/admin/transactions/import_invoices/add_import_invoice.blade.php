@@ -40,7 +40,7 @@
                     <div class="card-body">
                         <h4 class="card-title" style="text-align: center;font-size: 30px;">Thêm hóa đơn nhập</h4>
                         <form class="forms-sample" method="post"
-                              action="admin/import_invoices/add_import_invoice/{{$product->id}}">
+                              action="admin/import_invoices/add_import_invoice/{{$products->id}}">
 {{--                            @if(isset($product))--}}
 {{--                              action="admin/import_invoices/add_import_invoice/{{$product->id}}"--}}
 {{--                            @else--}}
@@ -51,8 +51,8 @@
                                 <label for="exampleInputPassword4">Chọn sản phẩm <span
                                         style="color: red">*</span></label>
                                 <select name="pro_id" aria-controls="order-listing" class="form-control">
-                                    @if(isset($product))
-                                        <option value="{{$product->id}}">{{$product->name}}</option>
+                                    @if(isset($products))
+                                        <option value="{{$products->id}}">{{$products->name}}</option>
                                     @else
                                         <option value="">--</option>
                                         @foreach($products as $product)

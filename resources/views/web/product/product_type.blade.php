@@ -40,7 +40,7 @@
                                             <div class="ribbon-wrapper"><div class="ribbon sale">Sale</div></div>
                                         @endif
                                         <div class="single-item-header">
-                                            <a href="{{route('product-detail', $pro_cat->id)}}"><img src="web/images/product/{{$pro_cat->image}}" alt=""></a>
+                                            <a href="{{route('product-detail', $pro_cat->id)}}"><img class="img-product" src="web/images/product/{{$pro_cat->image}}" alt=""></a>
                                         </div>
                                         <div class="single-item-body">
                                             <p class="single-item-title" style="width: 212px; height: 45px; overflow: hidden; text-overflow:ellipsis">{{$pro_cat->name}}</p>
@@ -81,7 +81,7 @@
                                         <div class="ribbon-wrapper"><div class="ribbon sale">Giảm giá</div></div>
                                     @endif
                                     <div class="single-item-header">
-                                        <a href="{{route('product-detail', $other_product->id)}}"><img src="web/images/product/{{$other_product->image}}" alt=""></a>
+                                        <a href="{{route('product-detail', $other_product->id)}}"><img class="img-product" src="web/images/product/{{$other_product->image}}" alt=""></a>
                                     </div>
                                     <div class="single-item-body">
                                         <p class="single-item-title" style="width: 212px; height: 45px; overflow: hidden; text-overflow:ellipsis">{{$other_product->name}}</p>
@@ -96,8 +96,13 @@
                                     </div>
                                     <div class="single-item-caption">
                                         <a class="add-to-cart pull-left" href="{{route('add-to-cart', $other_product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                        <a class="beta-btn primary" style="height: 156px; width: 212px; overflow: hidden; text-overflow:ellipsis"
-                                           href="{{route('product-detail', $other_product->id)}}">{{$other_product->description}} <i class="fa fa-chevron-right"></i></a>
+                                        <a class="beta-btn primary"
+                                           href="{{route('product-detail', $other_product->id)}}">
+                                            <div style="height: 156px;
+    width: 212px;
+    overflow: hidden;
+    text-overflow: ellipsis;">{{$other_product->description}}</div>
+                                             <i class="fa fa-chevron-right"></i></a>
                                         <div class="clearfix"></div>
                                     </div>
                                 </div>

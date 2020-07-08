@@ -16,19 +16,19 @@
         <h2 class="card-title">Chi Tiết Đơn Hàng</h2>
     </div>
     <p class="card-description">
-        Họ & Tên khách hàng : <b>{{$invoice->customer->name}}</b>
+        Họ & Tên khách hàng : <b>{{$invoices->customers->name}}</b>
     </p>
     <p class="card-description">
-        Số điện thoại : <b>{{$invoice->customer->phone_number}}</b>
+        Số điện thoại : <b>{{$invoices->customers->phone}}</b>
     </p>
     <p class="card-description">
-        Địa chỉ Email : <b>{{$invoice->customer->email}}</b>
+        Địa chỉ Email : <b>{{$invoices->customers->email}}</b>
     </p>
     <p class="card-description">
-        Địa chỉ giao hàng : <b>{{$invoice->customer->address}}</b>
+        Địa chỉ giao hàng : <b>{{$invoices->customers->address}}</b>
     </p>
     <p class="card-description">
-        Ghi chú : <b>{{$invoice->note}}</b>
+        Ghi chú : <b>{{$invoices->notes}}</b>
     </p>
     <div style="text-align: center">
         <h2>Danh sách đơn hàng</h2>
@@ -47,10 +47,15 @@
             <tbody>
             @foreach($productOrders as $productOrder)
                 <tr>
-                    <th>{{$productOrder->product->name}}</th>
-                    <th>{{$productOrder->quantity}}</th>
-                    <th>{{number_format($productOrder->product->selling_price,0,',','.')}} VNĐ</th>
-                    <th>{{number_format($productOrder->total,0,',','.')}} VNĐ</th>
+{{--                    {{dd($productOrder)}}--}}
+                    <th>{{$productOrder->products->name}}</th>
+                    <th>{{$productOrder->amount}}</th>
+                    @if($productOrder->products->promoted_price>0)
+                        <th>{{number_format($productOrder->products->promoted_price,0,',','.')}} VNĐ</th>
+                    @else
+                        <th>{{number_format($productOrder->products->selling_price,0,',','.')}} VNĐ</th>
+                    @endif
+                    <th>{{number_format($productOrder->unit_price,0,',','.')}} VNĐ</th>
                 </tr>
             @endforeach
             </tbody>
@@ -62,7 +67,7 @@
             <table style="width: 100%;line-height: 40px;">
                 <tr>
                     <th>Tổng tiền</th>
-                    <th style="font-size: 20px;color: red">{{number_format($invoice->total_cost,0,',','.')}}
+                    <th style="font-size: 20px;color: red">{{number_format($invoices->total_cost,0,',','.')}}
                         VNĐ
                     </th>
                 </tr>

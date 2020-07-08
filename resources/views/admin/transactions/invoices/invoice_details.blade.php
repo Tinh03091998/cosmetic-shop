@@ -40,9 +40,13 @@
                                     <tr>
 {{--                                        {{dd($productOrder)}}--}}
                                         <th>{{$productOrder->products->name}}</th>
-                                        <th>{{$productOrder->quantity}}</th>
+                                        <th>{{$productOrder->amount}}</th>
+                                        @if($productOrder->products->promoted_price>0)
+                                            <th>{{number_format($productOrder->products->promoted_price,0,',','.')}} VNĐ</th>
+                                        @else
                                         <th>{{number_format($productOrder->products->selling_price,0,',','.')}} VNĐ</th>
-                                        <th>{{number_format($productOrder->total,0,',','.')}} VNĐ</th>
+                                        @endif
+                                        <th>{{number_format($productOrder->unit_price,0,',','.')}} VNĐ</th>
                                     </tr>
                                 @endforeach
                                 </tbody>

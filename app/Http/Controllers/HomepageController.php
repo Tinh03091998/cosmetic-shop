@@ -235,7 +235,7 @@ class HomepageController extends Controller
         return view('web.search.search', compact('products'));
     }
 
-
+    //reset cus
 
 
 }

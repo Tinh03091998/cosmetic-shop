@@ -137,7 +137,6 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="admin/manufactures/add_manufacture"> Thêm nhà sản xuất </a></li>
                     <li class="nav-item"> <a class="nav-link" href="admin/manufactures/manufacture_list"> Danh sách nhà sản xuất </a></li>
-                    <li class="nav-item"> <a class="nav-link" href="transactions/import_invoices/import_invoice_list">Danh sách hóa đơn bán</a></li>
                 </ul>
             </div>
         </li>
