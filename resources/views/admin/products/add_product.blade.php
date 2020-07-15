@@ -40,6 +40,7 @@
                     <div class="card-body">
                         <h4 class="card-title" style="text-align: center;font-size: 30px;">Thêm sản phẩm</h4>
                         <form class="forms-sample" method="post" action="admin/products/add_product" enctype="multipart/form-data">
+                            @csrf
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label for="exampleInputPassword4">Sản phẩm thuộc danh mục<span style="color: red">*</span></label>
@@ -82,17 +83,27 @@
                                 </select>
                             </div>
 
+{{--                            <div class="form-group">--}}
+{{--                                <label for="exampleInputName1">Giá bán (Đơn vị: VND)<span style="color: red">*</span></label>--}}
+{{--                                <input type="number" class="form-control" min="1" max="1000000000" value="" name="selling_price" id="exampleInputName1" placeholder="Nhập giá bán">--}}
+{{--                            </div>--}}
+
                             <div class="form-group">
-                                <label for="exampleInputName1">Giá bán (Đơn vị: VND)<span style="color: red">*</span></label>
-                                <input type="number" class="form-control" min="1" max="1000000000" value="" name="selling_price" id="exampleInputName1" placeholder="Nhập giá bán">
+                                <label for="exampleInputName1">Ngày sản xuất<span style="color: red">*</span></label>
+                                <input type="date" class="form-control" value="" name="manufacture_date" id="exampleInputName1" placeholder="Nhập ngày sản xuất">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputName1">Giá khuyến mãi (Đơn vị: VND) <span style="color: red">*</span></label>
-                                <div style="display: flex;justify-content: center">
-                                    <input type="number" min="0" class="form-control" value="" name="promoted_price" id="exampleInputName1" placeholder="Nhập giá khuyến mãi">
-                                </div>
+                                <label for="exampleInputName1">Hạn sử dụng<span style="color: red">*</span></label>
+                                <input type="date" class="form-control" value="" name="expiration" id="exampleInputName1" placeholder="Nhập ngày hết hạn">
                             </div>
+
+{{--                            <div class="form-group">--}}
+{{--                                <label for="exampleInputName1">Giá khuyến mãi (Đơn vị: VND) <span style="color: red">*</span></label>--}}
+{{--                                <div style="display: flex;justify-content: center">--}}
+{{--                                    <input type="number" min="0" class="form-control" value="" name="promoted_price" id="exampleInputName1" placeholder="Nhập giá khuyến mãi">--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 
                             <div class="form-group">

@@ -75,19 +75,6 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-{{--                            <div class="tab-pane fade" id="home-1" role="tabpanel" aria-labelledby="home-tab">--}}
-{{--                                <div class="media">--}}
-{{--                                    <div class="owl-carousel owl-theme full-width">--}}
-{{--                                        @if(isset($gallery[0]->product_imgs))--}}
-{{--                                            @foreach(explode(',',$gallery[0]->product_imgs) as $img)--}}
-{{--                                                <div class="item">--}}
-{{--                                                    <img src="upload/sanpham/chitiet/{{$img}}" alt="image"/>--}}
-{{--                                                </div>--}}
-{{--                                            @endforeach--}}
-{{--                                        @endif--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
                             <div class="tab-pane fade active show" id="profile-1" role="tabpanel"
                                  aria-labelledby="profile-tab">
                                 <div class="media">
@@ -135,8 +122,6 @@
                                 {!! $products->description !!}
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

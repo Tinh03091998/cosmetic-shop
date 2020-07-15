@@ -97,6 +97,9 @@
                     </li>
                     <li><a href="{{route('about')}}">Giới thiệu</a></li>
                     <li><a href="{{route('contact')}}">Liên hệ</a></li>
+                    @if(auth('customers')->check())
+                        <li><a href="{{route('customer-information')}}">Thông tin cá nhân</a></li>
+                    @endif
                 </ul>
                 <div class="clearfix"></div>
             </nav>

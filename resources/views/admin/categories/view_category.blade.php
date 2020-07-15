@@ -29,9 +29,9 @@
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">
                                             Tên danh mục
                                         </th>
-                                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;">
-                                            Mã menu
-                                        </th>
+{{--                                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 150px;">--}}
+{{--                                            Mã menu--}}
+{{--                                        </th>--}}
                                         <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;"><a href="admin/categories/add_category"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Thêm danh mục"></a></th>
                                     </tr>
                                     </tbody></table>
@@ -49,8 +49,8 @@
                                         <tr class="jsgrid-row">
                                             <td class="jsgrid-cell jsgrid-align-center" style="width: 50px;"><?php echo $serial;?></td>
                                             <td class="jsgrid-cell jsgrid-align-center" style="width: 100px;">{{$cat->name}}</td>
-                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">
-                                                {{$cat->menu_id}}
+{{--                                            <td class="jsgrid-cell jsgrid-align-center" style="width: 150px;">--}}
+{{--                                                {{$cat->menu_id}}--}}
 {{--                                                @if(isset($cat->parent_id))--}}
 {{--                                                    @foreach($categories as $category)--}}
 {{--                                                        @if($category->parent_id == $category->id)--}}
@@ -60,10 +60,10 @@
 {{--                                                @else--}}
 {{--                                                    {{$category}}--}}
 {{--                                                @endif--}}
-                                            </td>
+{{--                                            </td>--}}
                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 50px;">
                                                 <a href="admin/categories/edit/{{$cat->id}}"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Sửa"></a>
-                                                <a href="admin/categories/delete/{{$cat->id}}" onclick="return confirm('Are you sure to delete this category?')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Xóa"></a>
+                                                <a href="admin/categories/delete/{{$cat->id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này không?')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Xóa"></a>
                                             </td>
                                         </tr>
                                     @endforeach

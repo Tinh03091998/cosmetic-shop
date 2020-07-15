@@ -38,13 +38,13 @@
             <div class="col-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Sửa hoá đơn nhập của sản phẩm : <b>{{$invoice->products->name}}</b></h4>
-                        <form class="forms-sample" method="post" action="admin/giaodich/hoadonnhap/sua/{{$invoice->id}}">
+                        <h4 class="card-title" style="text-align: center;font-size: 30px;">Sửa hoá đơn nhập của sản phẩm : <b>{{$invoice->product->name}}</b></h4>
+                        <form class="forms-sample" method="post" action="admin/import_invoices/edit/{{$invoice->id}}">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label for="exampleInputPassword4">Hoá đơn nhập của sản phẩm <span style="color: red">*</span></label>
                                 <select name="pro_id" aria-controls="order-listing" class="form-control">
-                                    <option value="{{$invoice->pro_id}}">{{$invoice->products->name}}</option>
+                                    <option value="{{$invoice->pro_id}}">{{$invoice->product  ->name}}</option>
 
                                 </select>
                             </div>

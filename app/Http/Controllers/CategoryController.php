@@ -34,7 +34,7 @@ class CategoryController extends Controller
 //        }
         $categories->save();
 
-        return redirect('admin/categories/add_category')->with('Notify', 'Save category successfully');
+        return redirect('admin/categories/add_category')->with('Notify', 'Lưu danh mục thành công');
     }
 
 //    View Categories
@@ -49,7 +49,7 @@ class CategoryController extends Controller
         $categories = Categories::find($id);
         $categories->delete();
 
-        return redirect('admin/categories/view')->with('Notify', 'Delete category successfully');
+        return redirect('admin/categories/view_category')->with('Notify', 'Xóa danh mục thành công');
     }
 
     //get edit category
@@ -64,9 +64,9 @@ class CategoryController extends Controller
                 'name'=>'required|min:2|max:255'
             ],
             [
-                'name.required'=>'Please fill data in [Category name] field',
-                'name.min'=>'Category name must be from 2 to 255 characters',
-                'name.max'=>'Category name must be from 2 to 255 characters'
+                'name.required'=>'Vui lòng điền dữ liệu cho tên danh mục',
+                'name.min'=>'Danh mục phải từ 2 đến 255 kí tự',
+                'name.max'=>'Danh mục phải từ 2 đến 255 kí tự'
             ]);
         $categories = Categories::all()->find($id);
         $categories->name = $request -> name;
@@ -79,6 +79,6 @@ class CategoryController extends Controller
         $categories->save();
 
 //        return redirect('admin/categories/edit/'.$id)->with('Notify', 'Edit category successfully');
-        return redirect('admin/categories/view')->with('Notify', 'Edit category successfully');
+        return redirect('admin/categories/view')->with('Notify', 'Sửa danh mục thành công');
     }
 }

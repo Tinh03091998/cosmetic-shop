@@ -14,9 +14,10 @@
 
 use App\Http\Controllers\CategoryController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[
+    'as'=>'/',
+    'uses'=>'HomepageController@getIndex'
+]);
 
 //route index
 Route::get('index',[
@@ -40,6 +41,11 @@ Route::get('product-detail/{product_id}', [
 Route::get('contact', [
     'as'=>'contact',
     'uses'=>'HomepageController@getContact'
+]);
+
+Route::post('contact', [
+    'as'=>'contact',
+    'uses'=>'HomepageController@postContact'
 ]);
 
 //about
@@ -90,6 +96,40 @@ Route::post('signup', [
 Route::get('logout', [
     'as'=>'logout',
     'uses'=>'HomepageController@postLogout'
+]);
+
+//forgot password
+Route::get('forgot-password', [
+    'as'=>'forgot-password',
+    'uses'=>'HomepageController@getForgotCustomerPassword'
+]);
+
+Route::post('forgot-password',[
+    'as'=>'forgot-password',
+    'uses'=>'HomepageController@sendCodeResetCustomerPassword'
+]);
+
+//reset password
+Route::get('reset-password-link', [
+    'as'=>'reset-password-link',
+    'uses'=>'HomepageController@resetCustomerPassword'
+]);
+
+Route::post('reset-password-link', [
+    'as'=>'reset-password-link',
+    'uses'=>'HomepageController@saveResetCustomerPassword'
+]);
+
+//view customer information
+Route::get('customer-information',[
+    'as'=>'customer-information',
+    'uses'=>'HomepageController@getViewCustomerInformation'
+]);
+
+//change customer information
+Route::post('customer-information', [
+    'as'=>'customer-information',
+    'uses'=>'HomepageController@postChangeCustomerInformation'
 ]);
 
 //search

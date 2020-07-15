@@ -119,10 +119,10 @@
                                     <div class="ribbon-wrapper"><div class="ribbon sale">Giảm giá</div></div>
                                 @endif
                                 <div class="single-item-header">
-                                    <a href="{{route('product-detail', $same_product->id)}}"><img src="web/images/product/{{$same_product->image}}" alt=""></a>
+                                    <a href="{{route('product-detail', $same_product->id)}}"><img class="img-product" src="web/images/product/{{$same_product->image}}" alt=""></a>
                                 </div>
                                 <div class="single-item-body">
-                                    <p class="single-item-title">{{$same_product->name}}</p>
+                                    <p class="single-item-title" style="width: 212px; height: 45px; overflow: hidden; text-overflow:ellipsis">{{$same_product->name}}</p>
                                     <p class="single-item-price">
                                         @if($same_product->pro_price==0)
                                             <span class="flash-sale">{{number_format($same_product->selling_price)}} VND</span>
@@ -132,9 +132,13 @@
                                         @endif
                                     </p>
                                 </div>
-                                <div class="single-item-caption">
+                                <div class="single-item-caption" style="height: 156px;
+    width: 212px;
+    overflow: hidden;
+    text-overflow: ellipsis;">
                                     <a class="add-to-cart pull-left" href="{{route('add-to-cart', $same_product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                    <a class="beta-btn primary" href="{{route('product-detail', $same_product->id)}}">{{$same_product->description}} <i class="fa fa-chevron-right"></i></a>
+                                    <a class="beta-btn primary" style="width: 212px; height: 120px; overflow: hidden; text-overflow:ellipsis"
+                                       href="{{route('product-detail', $same_product->id)}}">{{$same_product->description}} <i class="fa fa-chevron-right"></i></a>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -143,36 +147,36 @@
                     </div>
                 </div> <!-- .beta-products-list -->
             </div>
-            <div class="col-sm-3 aside">
-                <div class="widget">
-                    <h3 class="widget-title">Sản phẩm bán chạy</h3>
-                    <div class="widget-body">
-                        <div class="beta-sales beta-lists">
-                            <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>
-                                <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- best sellers widget -->
-                <div class="widget">
-                    <h3 class="widget-title">New Products</h3>
-                    <div class="widget-body">
-                        <div class="beta-sales beta-lists">
-                            <div class="media beta-sales-item">
-                                <a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>
-                                <div class="media-body">
-                                    Sample Woman Top
-                                    <span class="beta-sales-price">$34.55</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> <!-- best sellers widget -->
-            </div>
+{{--            <div class="col-sm-3 aside">--}}
+{{--                <div class="widget">--}}
+{{--                    <h3 class="widget-title">Sản phẩm bán chạy</h3>--}}
+{{--                    <div class="widget-body">--}}
+{{--                        <div class="beta-sales beta-lists">--}}
+{{--                            <div class="media beta-sales-item">--}}
+{{--                                <a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>--}}
+{{--                                <div class="media-body">--}}
+{{--                                    Sample Woman Top--}}
+{{--                                    <span class="beta-sales-price">$34.55</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div> <!-- best sellers widget -->--}}
+{{--                <div class="widget">--}}
+{{--                    <h3 class="widget-title">New Products</h3>--}}
+{{--                    <div class="widget-body">--}}
+{{--                        <div class="beta-sales beta-lists">--}}
+{{--                            <div class="media beta-sales-item">--}}
+{{--                                <a class="pull-left" href="product.html"><img src="source/assets/dest/images/products/sales/1.png" alt=""></a>--}}
+{{--                                <div class="media-body">--}}
+{{--                                    Sample Woman Top--}}
+{{--                                    <span class="beta-sales-price">$34.55</span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div> <!-- best sellers widget -->--}}
+{{--            </div>--}}
         </div>
     </div> <!-- #content -->
 </div> <!-- .container -->

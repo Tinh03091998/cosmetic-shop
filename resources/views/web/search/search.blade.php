@@ -26,17 +26,17 @@
                                             <div class="single-item-body">
                                                 <p class="single-item-title">{{$product->name}}</p>
                                                 <p class="single-item-price">
-                                                    @if($product->pro_price==0)
+                                                    @if($product->promoted_price==0)
                                                         <span class="flash-sale">{{number_format($product->selling_price)}} VND</span>
                                                     @else
                                                         <span class="flash-del">{{number_format($product->selling_price)}} VND</span>
-                                                        <span class="flash-sale">{{number_format($product->pro_price)}} VND</span>
+                                                        <span class="flash-sale">{{number_format($product->promoted_price)}} VND</span>
                                                     @endif
                                                 </p>
                                             </div>
                                             <div class="single-item-caption">
                                                 <a class="add-to-cart pull-left" href="{{route('add-to-cart', $product->id)}}"><i class="fa fa-shopping-cart"></i></a>
-                                                <a class="beta-btn primary" href="product.html">{{$product->introduction}} <i class="fa fa-chevron-right"></i></a>
+                                                <a class="beta-btn primary" href="{{route('product-detail', $product->id)}}">{{$product->description}} <i class="fa fa-chevron-right"></i></a>
                                                 <div class="clearfix"></div>
                                             </div>
                                         </div>

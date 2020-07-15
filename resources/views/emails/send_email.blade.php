@@ -67,9 +67,17 @@
                         <tr>
                             <td>{{$stt}}</td>
                             <td>{{$product['item']->name}}</td>
-                            <td>{{number_format($product['price'],0,',','.')}} VNĐ</td>
-                            <td>{{$product['quantity']}}</td>
-                            <td>{{number_format($product['price']*$product['quantity'],0,',','.')}} VNĐ</td>
+                            @if($product['item']->promoted_price >0)
+                                <td>{{number_format($product['item']->promoted_price,0,',','.')}} VNĐ
+{{--                            <td>{{number_format($product['price'],0,',','.')}} VNĐ</td>--}}
+                                <td>{{$product['quantity']}}</td>
+                                <td>{{number_format($product['item']->promoted_price*$product['quantity'],0,',','.')}} VNĐ</td>
+                             @else
+                                <td>{{number_format($product['item']->selling_price,0,',','.')}} VNĐ
+                                {{--                            <td>{{number_format($product['price'],0,',','.')}} VNĐ</td>--}}
+                                <td>{{$product['quantity']}}</td>
+                                <td>{{number_format($product['item']->selling_price*$product['quantity'],0,',','.')}} VNĐ</td>
+                             @endif
                         </tr>
                     @endforeach
                 </table>

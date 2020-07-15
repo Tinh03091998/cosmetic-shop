@@ -5,7 +5,7 @@
             <div class="col-sm-3">
                 <div class="widget">
                     <h4 class="widget-title">Instagram Feed</h4>
-                    <div id="beta-instagram-feed"><div></div></div>
+{{--                    <div id="beta-instagram-feed"><div></div></div>--}}
                 </div>
             </div>
             <div class="col-sm-2">
@@ -56,7 +56,7 @@
             <a href="#"><img src="source/assets/dest/images/pay/visa.jpg" alt="" /></a>
             <a href="#"><img src="source/assets/dest/images/pay/paypal.jpg" alt="" /></a>
         </p>
-        <div class="clearfix"></div>
+{{--        <div class="clearfix"></div>--}}
     </div> <!-- .container -->
 </div> <!-- .copyright -->
 {{--End Footer section--}}

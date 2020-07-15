@@ -20,7 +20,6 @@
             <form action="{{route('signup')}}" method="post" class="beta-form-checkout">
             <input type="hidden" name="_token" value="{{csrf_token()}}">
                 <div class="row">
-                    <div class="col-sm-3"></div>
                     @if(count($errors)>0)
                         <div class="alert alert-danger">
                             @foreach($errors->all() as $err)
@@ -31,44 +30,38 @@
                     @if(Session::has('Success'))
                         <div class="alert alert-success">{{Session::get('Success')}}</div>
                     @endif
-                    <div class="col-sm-6">
-                        <h4>Đăng kí</h4>
-                        <div class="space20">&nbsp;</div>
 
-
-                        <div class="form-block">
-                            <label for="email">Email*</label>
-                            <input type="email" name="email" required>
-                        </div>
-
-                        <div class="form-block">
+                        <div class="col-lg-6 form-block">
                             <label for="your_last_name">Họ tên*</label>
                             <input type="text" name="name" required>
                         </div>
 
-                        <div class="form-block">
+                        <div class="col-lg-6 form-block">
+                            <label for="email">Email*</label>
+                            <input type="email" name="email" required>
+                        </div>
+
+                        <div class="col-lg-6 form-block">
                             <label for="address">Địa chỉ*</label>
                             <input type="text" name="address">
                         </div>
 
 
-                        <div class="form-block">
+                        <div class="col-lg-6 form-block">
                             <label for="phone">Điện thoại*</label>
                             <input type="text" name="phone">
                         </div>
-                        <div class="form-block">
+                        <div class="col-lg-6 form-block">
                             <label for="phone">Mật khẩu*</label>
                             <input type="password" name="password" required>
                         </div>
-                        <div class="form-block">
+                        <div class="col-lg-6 form-block">
                             <label for="phone">Xác nhận mật khẩu*</label>
                             <input type="password" name="re-password" required>
                         </div>
-                        <div class="form-block">
+                        <div class="col-lg-6 form-block">
                             <button type="submit" class="btn btn-primary">Đăng ký</button>
                         </div>
-                    </div>
-                    <div class="col-sm-3"></div>
                 </div>
             </form>
         </div> <!-- #content -->

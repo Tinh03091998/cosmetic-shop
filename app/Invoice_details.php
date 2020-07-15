@@ -11,7 +11,7 @@ class Invoice_details extends Model
     public function invoices(){
         return $this->belongsTo(Invoices::class, 'invoice_id', 'id');
     }
-    public function products(){
+    public function product(){
         return $this->belongsTo(Products::class,'pro_id', 'id');
     }
 }

@@ -109,7 +109,7 @@
             <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="admin/import_invoices/add_import_invoice">Thêm hóa đơn nhập</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="transactions/import_invoices/import_invoice_list">Danh sách hóa đơn nhập</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="admin/import_invoices/import_invoice_list">Danh sách hóa đơn nhập</a></li>
 {{--                    <li class="nav-item"> <a class="nav-link" href="pages/icons/simple-line-icon.html">Xóa hóa đơn nhập</a></li>--}}
                 </ul>
             </div>
@@ -149,6 +149,19 @@
             <div class="collapse" id="error">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="admin/comments/comment_list"> Danh sách bình luận </a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#abc" aria-expanded="false" aria-controls="abc">
+                <i class="mdi mdi-apple-keyboard-command menu-icon"></i>
+                <span class="menu-title">Thống kê</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="abc">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="admin/statistical/viewRevenue">Quản lý doanh thu</a></li>
+                    {{--                    <li class="nav-item"> <a class="nav-link" href="pages/icons/simple-line-icon.html">Xóa hóa đơn nhập</a></li>--}}
                 </ul>
             </div>
         </li>

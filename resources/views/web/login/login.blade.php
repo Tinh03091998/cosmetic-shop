@@ -40,6 +40,9 @@
                     <div class="form-block">
                         <button type="submit" class="btn btn-primary">Đăng nhập</button>
                     </div>
+                    <div class="form-forgot w-100 m-t-10">
+                        <a href="forgot-password">Quên mật khẩu?</a>
+                    </div>
                 </div>
                 <div class="col-sm-3"></div>
             </div>

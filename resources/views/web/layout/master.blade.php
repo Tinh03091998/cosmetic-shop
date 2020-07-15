@@ -17,7 +17,15 @@
     <link rel="stylesheet" title="style" href="source/assets/dest/css/huong-style.css">
 </head>
 <body>
-
+@if (session('warning'))
+    <span class="alert alert-warning help-block">
+                            <strong>{{ session('warning') }}</strong>
+                        </span>
+@elseif(session('success'))
+    <span class="alert alert-success help-block">
+                            <strong>{{ session('success') }}</strong>
+                        </span>
+@endif
     @include('web.partial.header') <!-- #header -->
 <div class="rev-slider">
     @yield('content')

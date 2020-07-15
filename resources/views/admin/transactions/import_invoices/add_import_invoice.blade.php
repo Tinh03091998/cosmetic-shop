@@ -16,19 +16,19 @@
             </div>
         @endif
 
-        @if(session('message'))
+        @if(session('ThongBao'))
             <div class='card card-inverse-success' id='context-menu-access'>
                 <div class='card-body'>
                     <p class='card-text' style='text-align: center;'>
-                        {{session('message')}}
+                        {{session('ThongBao')}}
                     </p>
                 </div>
             </div>
-        @elseif(session('error'))
+        @elseif(session('Loi'))
             <div class='card card-inverse-warning' id='context-menu-access'>
                 <div class='card-body'>
                     <p class='card-text' style='text-align: center;'>
-                        {{session('error')}}
+                        {{session('Loi')}}
                     </p>
                 </div>
             </div>
@@ -40,25 +40,17 @@
                     <div class="card-body">
                         <h4 class="card-title" style="text-align: center;font-size: 30px;">Thêm hóa đơn nhập</h4>
                         <form class="forms-sample" method="post"
-                              action="admin/import_invoices/add_import_invoice/{{$products->id}}">
-{{--                            @if(isset($product))--}}
-{{--                              action="admin/import_invoices/add_import_invoice/{{$product->id}}"--}}
-{{--                            @else--}}
-{{--                              action="admin/import_invoices/add_import_invoice"--}}
-{{--                            @endif>--}}
+{{--                              action="">--}}
+                              action="admin/import_invoices/add_import_invoice">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label for="exampleInputPassword4">Chọn sản phẩm <span
                                         style="color: red">*</span></label>
                                 <select name="pro_id" aria-controls="order-listing" class="form-control">
-                                    @if(isset($products))
-                                        <option value="{{$products->id}}">{{$products->name}}</option>
-                                    @else
                                         <option value="">--</option>
                                         @foreach($products as $product)
                                             <option value="{{$product->id}}">{{$product->name}}</option>
                                         @endforeach
-                                    @endif
                                 </select>
                             </div>
                             <div class="form-group">
@@ -82,18 +74,18 @@
                                        name="import_price" class="form-control" id="exampleInputName1"
                                        placeholder="Giá nhập của sản phẩm"/>
                             </div>
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputName1">Giá bán <span style="color: red">*</span></label>--}}
-{{--                                <input type="number" value=""--}}
-{{--                                       name="selling_price" class="form-control" id="exampleInputName1"--}}
-{{--                                       placeholder="Giá bán của sản phẩm"/>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <label for="exampleInputName1">Giá khuyến mại <span style="color: red">*</span></label>--}}
-{{--                                <input type="number" value=""--}}
-{{--                                       name="promoted_price" class="form-control" id="exampleInputName1"--}}
-{{--                                       placeholder="Giá khuyến mại của sản phẩm"/>--}}
-{{--                            </div>--}}
+                            <div class="form-group">
+                                <label for="exampleInputName1">Giá bán <span style="color: red">*</span></label>
+                                <input type="number" value=""
+                                       name="selling_price" class="form-control" id="exampleInputName1"
+                                       placeholder="Giá bán của sản phẩm"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputName1">Giá khuyến mại <span style="color: red">*</span></label>
+                                <input type="number" value=""
+                                       name="promoted_price" class="form-control" id="exampleInputName1"
+                                       placeholder="Giá khuyến mại của sản phẩm"/>
+                            </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Số lượng nhập <span style="color: red">*</span></label>
                                 <input type="number" value=""

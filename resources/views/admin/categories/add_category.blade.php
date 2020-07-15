@@ -34,13 +34,7 @@
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label for="exampleInputPassword4">Menu <span style="color: red">*</span></label>
-{{--                                <select name="menu_id" aria-controls="order-listing" class="form-control">--}}
-{{--                                    <option value="">--</option>--}}
-{{--                                    @foreach($categories as $cat)--}}
-{{--                                        <option value="{{$cat->id}}">{{$cat->name}}</option>--}}
-{{--                                    @endforeach--}}
-{{--                                </select>--}}
-                                <input type="number" value="2" name="menu_id" class="form-control" readonly="true" />
+                                <input type="text" value="Loại sản phẩm" name="menu_id" class="form-control" readonly="true" />
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputName1">Tên danh mục <span style="color: red">*</span></label>

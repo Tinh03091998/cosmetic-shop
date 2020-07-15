@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Categories;
 use App\Comments;
+use App\Contact;
 use App\Customers;
+use App\Http\Requests\RequestResetPassword;
 use App\Invoice;
 use App\Invoice_details;
 use App\Invoices;
@@ -54,6 +56,36 @@ class HomepageController extends Controller
     //contact
     public function getContact(){
         return view('web/inform/contact');
+    }
+
+    public function postContact(Request $request){
+        $this->validate($request,
+            [
+                'name'=>'required',
+                'email'=>'required|email',
+//                'phone'=>'required|numeric', //choox này bà ko có input phone nên nó đang check lỗi ở đây
+//                'address'=>'required',
+                'msg'=>'required'
+            ],
+            [
+//                'name.required'=>'Bạn chưa nhập họ tên của bạn',
+//                'email.required'=>'Bạn chưa nhập email',
+//                'email.email'=>'Bạn chưa nhập đúng định dạng của email',
+//                'phone_number.required'=>'Bạn chưa nhập số điện thoại',
+//                'phone_number.numeric'=>'Số điện thoại phải là kiểu số',
+//                'address.required'=>'Bạn chưa nhập địa chỉ',
+                'msg.required'=>'Bạn chưa nhập nhập nội dung muốn gửi cho chúng tôi!',
+            ]);
+
+        $contact = new Contact();
+        $contact->customer_id = auth('customers')->user()->id;
+//        $contact->user_id = null;
+        $contact->content = $request->msg;
+        $contact->status = false;
+
+        $contact->save();
+
+        return redirect()->back()->with('ThongBao','Cảm ơn bạn đã gửi liên hệ với chúng tôi! Chúng tôi sẽ liên hệ lại bạn sớm nhất!');
     }
 
     //about
@@ -109,6 +141,10 @@ class HomepageController extends Controller
             $invoice_details->pro_id = $key['item']->id;
             $invoice_details->unit_price = $key['price'];
             $invoice_details->amount = $key['quantity'];
+            $product = Products::find($invoice_details->pro_id);
+            $product->quantity = $product->quantity - $invoice_details->amount;
+            $product->sell_number +=  $invoice_details->amount;
+            $product->save();
             $invoice_details->save();
         }
 
@@ -194,7 +230,7 @@ class HomepageController extends Controller
         $customer->phone = $request->phone;
         $customer->address = $request->address;
         $customer->save();
-        return redirect()->route('login')->with('Success', 'Create user account successfully');
+        return redirect()->route('login')->with('Success', 'Tạo tài khoản thành công');
     }
 
     //login
@@ -214,10 +250,10 @@ class HomepageController extends Controller
 //        var_dump($credentals);
 //        var_dump(Auth::attempt($credentals));
         if (auth('customers')->attempt($credentals)){
-            return redirect()->route('page-index')->with(['flag'=>'success','message'=>'Login successfully']);
+            return redirect()->route('page-index')->with(['flag'=>'success','message'=>'Đăng nhập thành công']);
         }
         else{
-            return redirect()->back()->with(['flag'=>'danger','message'=>'Login unsuccessfully']);
+            return redirect()->back()->with(['flag'=>'danger','message'=>'Đăng nhập không thành công']);
         }
     }
 
@@ -231,11 +267,102 @@ class HomepageController extends Controller
     public function getSearch(Request $request){
         $products = Products::where('name', 'like', '%'.$request->search.'%')
                               ->orWhere('selling_price', $request->search)
+                              ->orWhere('promoted_price', $request->search)
                               ->get();
         return view('web.search.search', compact('products'));
     }
 
-    //reset cus
+    //reset customer password
+    public function getForgotCustomerPassword(){
+        return view('web.customer_information.forgot_password');
+    }
 
+    public function sendCodeResetCustomerPassword(Request $request){
+        $email = $request->email;
+        $checkCustomer = Customers::where('email',$email)->first();
+
+        if (!$checkCustomer){
+            return redirect()->back()->with('warning','Tài khoản không tồn tại');
+        }
+
+        $code = bcrypt(time().$email);
+
+        $checkCustomer->code = $code;
+        $checkCustomer->time_code = Carbon::now();
+        $checkCustomer->save();
+
+        $url = route('reset-password-link',['code'=>$checkCustomer->code,'email'=>$email]);
+        $data = [
+            'route' => $url
+        ];
+        Mail::send('emails.reset_customer_password',$data,function ($message) use ($email){
+            $message->to($email,'Lấy lại mật khẩu')->subject('Lấy lại mật khẩu');
+        });
+
+        return redirect()->back()->with('success','Link lấy lại mật khẩu đã gửi vào email của bạn! Vui lòng kiếm tra email.');
+    }
+
+    public function resetCustomerPassword(Request $request){
+        $code = $request->code;
+        $email = $request->email;
+
+        $checkCustomer = Customers::where([
+            'code' => $code,
+            'email' => $email
+        ])->first();
+
+        if (!$checkCustomer){
+            return redirect('/')->with('Loi','Xin lỗi ! Đường dẫn lấy lại mật khẩu không đúng , vui lòng thử lại .');
+        }
+
+        return view('web.customer_information.reset_customer_password');
+    }
+
+    public function saveResetCustomerPassword(RequestResetPassword $requestResetPassword){
+        if ($requestResetPassword->password){
+            $code = $requestResetPassword->code;
+            $email = $requestResetPassword->email;
+            $checkCustomer = Customers::where([
+                'code' => $code,
+                'email' => $email
+            ])->first();
+
+            if (!$checkCustomer){
+                return redirect('/')->with('warning','Xin lỗi ! Đường dẫn lấy lại mật khẩu không đúng , vui lòng thử lại .');
+            }
+
+            $checkCustomer->password = bcrypt($requestResetPassword->password);
+            $checkCustomer->save();
+
+            return redirect('/')->with('success','Mật khẩu đã được thay đổi thành công');
+        }
+    }
+
+    public function getViewCustomerInformation(){
+        return view('web.customer_information.customer_individual');
+    }
+
+    public function postChangeCustomerInformation(Request $request){
+        $this->validate($request,
+            [
+                'name'=>'required|min:3',
+                'phone'=>'required|numeric',
+                'address'=>'required',
+            ],
+            [
+                'name.required'=>'Bạn chưa nhập họ tên của bạn',
+                'name.min'=>'Họ tên của bạn phải nhập lớn hơn 3 ký tự',
+                'phone.required'=>'Bạn chưa nhập số điện thoại',
+                'phone.numeric'=>'Số điện thoại phải là kiểu số',
+                'address.required'=>'Bạn chưa nhập địa chỉ'
+            ]);
+        $customer = Customers::find(auth('customers')->user()->id);
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->address = $request->address;
+        $customer->save();
+
+        return redirect()->back()->with('ThongBao','Bạn đã thay đổi thông tin thành công');
+    }
 
 }

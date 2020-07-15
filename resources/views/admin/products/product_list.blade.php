@@ -38,9 +38,9 @@
                                         <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">
                                             Ảnh
                                         </th>
-                                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">
-                                            Trạng thái
-                                        </th>
+{{--                                        <th class="jsgrid-header-cell jsgrid-align-center jsgrid-header-sortable" style="width: 100px;">--}}
+{{--                                            Trạng thái--}}
+{{--                                        </th>--}}
                                         <th class="jsgrid-header-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;"><a href="admin/products/add_product"><input class="jsgrid-button jsgrid-mode-button jsgrid-insert-mode-button" type="button" title="Thêm sản phẩm"></a></th>
                                     </tr>
                                     </tbody></table>
@@ -64,7 +64,7 @@
                                             <td class="jsgrid-cell jsgrid-control-field jsgrid-align-center" style="width: 100px;">
                                                 <a href="admin/products/product_detail/{{$product->id}}"><input class="jsgrid-button jsgrid-clear-filter-button" type="button" title="Xem chi tiết"></a>
                                                 <a href="admin/products/edit_product/{{$product->id}}"><input class="jsgrid-button jsgrid-edit-button" type="button" title="Sửa"></a>
-                                                <a href="admin/products/delete_product/{{$product->id}}" onclick="return confirm('Are you sure to delete this product')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Xóa"></a>
+                                                <a href="admin/products/delete_product/{{$product->id}}" onclick="return confirm('Bạn có chắc chăn muốn xóa sản phẩm này không?')"><input class="jsgrid-button jsgrid-delete-button" type="button" title="Xóa"></a>
                                             </td>
                                         </tr>
                                     @endforeach
